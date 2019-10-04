@@ -92,6 +92,8 @@ function menu(x, y) {
 newFolderNum = 1
 
 function newFolder() {
+    newFolderClose = "close" + String(newFolderNum)
+    newFolderModal = "modal" + String(newFolderNum)
     newFolderName = "folder" + String(newFolderNum)
     newFolderNameItself = newFolderName + "-itself"
     folderNameInput = "input" + String(newFolderNum)
@@ -117,7 +119,7 @@ function newFolder() {
     var input = document.getElementById(folderNameInput); 
     input.addEventListener('input', resizeInput); 
     resizeInput.call(input);
-    fillFolder(newFolderName)
+    fillFolder(newFolderName, newFolderModal, newFolderClose)
     newFolderNum += 1;
 }
 
