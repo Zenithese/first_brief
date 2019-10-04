@@ -83,14 +83,14 @@ body {
 /* Folder Modal */
 
 #myBtn {
-    cursor: pointer;
-    outline: none;
-    border: none;
-    background: none;
-    font-family: monospace;
-    color: aliceblue;
-    text-shadow: 4px 4px 8px black;
-    font-size: 13px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: none;
+  font-family: monospace;
+  color: aliceblue;
+  text-shadow: 4px 4px 8px black;
+  font-size: 13px;
 }
 
 .modal {
@@ -110,20 +110,6 @@ body {
   font-weight: bold;
 }
 
-.modal::after {
-  content: "";
-  /* background-image: url("https://cdn2.watson.ch/imgdb/1980/Qx,E,0,0,3092,2061,1288,858,515,343/1233341493958781"); */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  opacity: 0.27;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-}
-
 /* Modal Content */
 .modal-content {
   opacity: .7;
@@ -132,6 +118,7 @@ body {
   bottom: 22.7%;
   width: 70%;
   height: 60%;
+  border-radius: 15px;
   /* text-align: center; */
   background-color: black;
   /* background-image: url("https://cdn2.watson.ch/imgdb/1980/Qx,E,0,0,3092,2061,1288,858,515,343/1233341493958781"); */
@@ -160,28 +147,28 @@ body {
 
 .close:hover,
 .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .modal-header {
-    padding: 2px 16px;
-    /* background-color: red; */
-    color: floralwhite;
-    text-shadow: 1px 1px 8px black;
-        text-align: center;
+  padding: 2px 16px;
+  /* background-color: red; */
+  color: floralwhite;
+  text-shadow: 1px 1px 8px black;
+  text-align: center;
 }
 
 .modal-body {padding: 2px 16px;}
 
 .modal-footer {
-    padding: 2px 16px;
-    /* background-color: blue; */
-    color: floralwhite;
-    text-shadow: 1px 1px 8px black;
-    font-weight: 100;
-        text-align: center;
+  padding: 2px 16px;
+  /* background-color: blue; */
+  color: floralwhite;
+  text-shadow: 1px 1px 8px black;
+  font-weight: 100;
+  text-align: center;
 }
 
 .fa-angellist:before {
