@@ -94,7 +94,6 @@ newFolderNum = 0
 function newFolder() {
     newFolderName = "folder" + String(newFolderNum)
     newFolderNameItself = newFolderName + "-itself"
-    console.log(newFolderNameItself);
     var newFolder = document.createElement("div");
     newFolder.innerHTML =  `<div id=${newFolderNameItself} style="width: 100px;">
                                 <img class="image" src="http://icon-park.com/imagefiles/folder_icon_yellow.png" style="max-width: 100%">
@@ -115,7 +114,6 @@ function newFolder() {
     document.body.appendChild(newFolder);
     dragElement(document.getElementById(newFolderName));
     newFolderNum += 1;
-    console.log(newFolderNum)
 }
 
 // function component() {
