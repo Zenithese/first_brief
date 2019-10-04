@@ -89,17 +89,18 @@ function menu(x, y) {
     i.opacity = "1";
 }
 
-newFolderNum = 0
+newFolderNum = 1
 
 function newFolder() {
     newFolderName = "folder" + String(newFolderNum)
     newFolderNameItself = newFolderName + "-itself"
+    folderNameInput = "input" + String(newFolderNum)
     var newFolder = document.createElement("div");
     newFolder.innerHTML =  `<div id=${newFolderNameItself} style="width: 100px;">
                                 <img class="image" src="http://icon-park.com/imagefiles/folder_icon_yellow.png" style="max-width: 100%">
                             </div>
                             <form id="folder-name" onsubmit="renameFolder(e)">
-                                <input type="text" name="new_folder" value="New Folder"
+                                <input id=${folderNameInput} type="text" name="new_folder" value="New Folder ${newFolderNum}"
                                     style="background-color: transparent; border: none; font-size: 12px;">
                             </form>`
     newFolder.id = newFolderName
@@ -113,6 +114,9 @@ function newFolder() {
                         text-align: center;`
     document.body.appendChild(newFolder);
     dragElement(document.getElementById(newFolderName));
+    var input = document.getElementById(folderNameInput); 
+    input.addEventListener('input', resizeInput); 
+    resizeInput.call(input); 
     newFolderNum += 1;
 }
 
