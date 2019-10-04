@@ -29,7 +29,7 @@ function fillFolder(folder = "folder", modal = "myModal", close = "close") {
                                                 <h2>${folder}</h2>
                                             </div>
                                             <div class="modal-body">
-                                                <p>${newFolderNum}</p>
+                                                <p>Somethings are easier forgotten, and somethings have to be remembered, and sometimes thoes same somethings are the same something...</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <h3>
