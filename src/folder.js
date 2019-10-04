@@ -89,6 +89,11 @@ function menu(x, y) {
     i.opacity = "1";
 }
 
+function newFolder() {
+    var newFolder = document.createElement("BUTTON");
+    document.body.appendChild(newFolder);
+}
+
 // function component() {
 //     const element = document.createElement('div');
 
