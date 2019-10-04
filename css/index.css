@@ -1,0 +1,22 @@
+body {
+    /* margin: inherit;
+    overflow: hidden;
+    font-family: monospace; */
+    background-color: indigo;
+}
+
+#folder {
+    /* cursor: grab; */
+    height: 100px;
+    width: 100px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 10%;
+    top: 10%;
+}
+
+#folder:active {
+  /* cursor: grabbing; */
+}
