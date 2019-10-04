@@ -1,0 +1,27 @@
+body {
+  background-color: indigo;
+}
+
+#folder {
+  width: 100px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 10%;
+  top: 200px;
+  text-align: center;
+}
+
+#folder-itself {
+    width: 100px;
+}
+
+#folder:active {
+  /* cursor: grabbing; */
+}
+
+#folder-name {
+  background-color: transparent;
+  border: none;
+}

@@ -1,10 +1,10 @@
 dragElement(document.getElementById("folder"));
 
-function dragElement(elmnt) {
+function dragElement(elmnt, elmntName) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    if (document.getElementById(elmnt.id + "-header")) {
+    if (document.getElementById(elmnt.id + "-itself")) {
         /* if present, the header is where you move the DIV from:*/
-        document.getElementById(elmnt.id + "-header").onmousedown = dragMouseDown;
+        document.getElementById(elmnt.id + "-itself").onmousedown = dragMouseDown;
     } else {
         /* otherwise, move the DIV from anywhere inside the DIV:*/
         elmnt.onmousedown = dragMouseDown;
@@ -40,3 +40,28 @@ function dragElement(elmnt) {
         document.onmousemove = null;
     }
 }
+
+var input = document.querySelector('input'); // get the input element
+input.addEventListener('input', resizeInput); // bind the "resizeInput" callback on "input" event
+resizeInput.call(input); // immediately call the function
+
+function resizeInput() {
+    this.style.width = (this.value.length + 1) * 6 + 'px';
+}
+
+function renameFolder(e) {
+    document.getElementById("folder-name").value = e
+}
+
+// function component() {
+//     const element = document.createElement('div');
+
+//     // Lodash, currently included via a script, is required for this line to work
+//     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+
+//     return element;
+// }
+
+// el = document.getElementById("folder-name");
+
+// el.appendChild(component());
