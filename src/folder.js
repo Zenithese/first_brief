@@ -116,7 +116,8 @@ function newFolder() {
     dragElement(document.getElementById(newFolderName));
     var input = document.getElementById(folderNameInput); 
     input.addEventListener('input', resizeInput); 
-    resizeInput.call(input); 
+    resizeInput.call(input);
+    fillFolder(newFolderName)
     newFolderNum += 1;
 }
 
