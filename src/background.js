@@ -5,8 +5,9 @@ wallpaper.addEventListener("change", function(e) {
 });
 
 function changeBackground(url) {
-    // console.log(url)
-    // document.body.style = `background-image: url(${url})`
-    document.body.style = `background-color: transparent;
-                           background-image: url(${url})`
+    document.body.style = `background: url(${url}) no-repeat center center fixed; 
+                           -webkit-background-size: cover;
+                           -moz-background-size: cover;
+                           -o-background-size: cover;
+                           background-size: cover;`
 }
