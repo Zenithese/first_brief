@@ -49,8 +49,14 @@ function resizeInput() {
     this.style.width = (this.value.length + 1) * 6 + 'px';
 }
 
-function renameFolder(e) {
-    document.getElementById("folder-name").value = e
+function renameFolder(name) {
+    // console.log(document.getElementById(name.value))
+    // fillFolder(name.value, name.id, name.name, name.title);
+    console.log(name);
+    // return () => {
+        // console.log(name.title);
+    document.getElementById(name.title).innerHTML = name.value
+    // }
 }
 
 var i = document.getElementById("menu").style;
@@ -98,13 +104,17 @@ function newFolder() {
     newFolderNameItself = newFolderName + "-itself"
     folderNameInput = "input" + String(newFolderNum)
     var newFolder = document.createElement("div");
-    newFolder.innerHTML =  `<div id=${newFolderNameItself} style="width: 100px;">
+    newFolder.innerHTML =  `<style>
+                                #${newFolderName}:hover {z-index: 1}
+                            </style>
+                            <div id=${newFolderNameItself} style="width: 100px;">
                                 <img class="image" src="http://icon-park.com/imagefiles/folder_icon_yellow.png" style="max-width: 100%">
                             </div>
-                            <form id="folder-name" onsubmit="renameFolder(e)">
-                                <input id=${folderNameInput} type="text" name="new_folder" value="New Folder ${newFolderNum}"
+                            <div id="folder-name">
+                                <input id=${folderNameInput} type="text" name=${newFolderModal} value="New Folder ${newFolderNum}" onchange="renameFolder(document.getElementById('${folderNameInput}'))" title=${newFolderNum}
                                     style="background-color: transparent; border: none; font-size: 12px;">
-                            </form>`
+                            </div>`
+    // document.getElementById(folderNameInput).dataset.close = newFolderClose
     newFolder.id = newFolderName
     newFolder.style =  `width: 100px;
                         height: 120px;
@@ -119,10 +129,12 @@ function newFolder() {
     var input = document.getElementById(folderNameInput); 
     input.addEventListener('input', resizeInput); 
     resizeInput.call(input);
-    fillFolder(newFolderName, newFolderModal, newFolderClose)
+    console.log(document.getElementById(folderNameInput).value)
+    fillFolder(document.getElementById(folderNameInput).value, newFolderName, newFolderModal, newFolderClose, newFolderNum)
     newFolderNum += 1;
 }
-
+// cont i = documentgetElementById('input')
+// i.data.close = "true"
 // function component() {
 //     const element = document.createElement('div');
 

@@ -18,10 +18,10 @@
             <!-- <img class="image" src="http://www.pngmart.com/files/1/Folders-PNG-File.png" style="max-width: 100%"> -->
             <img class="image" src="http://icon-park.com/imagefiles/folder_icon_yellow.png" style="max-width: 100%">
         </div>
-        <form id="folder-name" onsubmit="renameFolder(e)">
-            <input type="text" name="new_folder" value="New Folder"
+        <div id="folder-name">
+            <input id="input" type="text" name="modal" value="New Folder" onchange="renameFolder(document.getElementById('input'))" title = "0"
                 style="background-color: transparent; border: none; font-size: 12px;">
-        </form>
+        </div>
     </div>
 
     <div id="menu">

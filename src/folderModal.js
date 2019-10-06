@@ -18,18 +18,18 @@
 //                                                             </div>
 //                                                         </div>`
 
-function fillFolder(folder = "folder", modal = "myModal", close = "close") {
-    console.log(folder);
+function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", close = "close", num = "0") {
+    console.log(num);
     var newFolderContent = document.createElement("div");
     document.body.appendChild(newFolderContent);
     newFolderContent.innerHTML =   `<div id=${modal} class="modal">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <span id=${close} class="close">&times;</span>
-                                                <h2>${folder}</h2>
+                                                <h2 id=${String(num)}>${value}</h2>
                                             </div>
                                             <div class="modal-body">
-                                                <p>Somethings are easier forgotten, and somethings have to be remembered, and sometimes thoes same somethings are the same something...</p>
+                                                <p>Somethings are easier forgotten, and somethings have to be remembered, and sometimes those same somethings are the same something...</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <h3>
