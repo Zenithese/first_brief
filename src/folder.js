@@ -131,8 +131,6 @@ function newFolder(xXx, yYy) {
                         text-align: center;
                         top: ${yYy}px;
                         left: ${xXx}px;`
-    // newFolder.style = y + "px";
-    // newFolder.style = x + "px";
     document.body.appendChild(newFolder);
     dragElement(document.getElementById(newFolderName));
     var input = document.getElementById(folderNameInput); 
@@ -141,17 +139,3 @@ function newFolder(xXx, yYy) {
     fillFolder(document.getElementById(folderNameInput).value, newFolderName, newFolderModal, newFolderClose, newFolderNum)
     newFolderNum += 1;
 }
-// cont i = documentgetElementById('input')
-// i.data.close = "true"
-// function component() {
-//     const element = document.createElement('div');
-
-//     // Lodash, currently included via a script, is required for this line to work
-//     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-
-//     return element;
-// }
-
-// el = document.getElementById("folder-name");
-
-// el.appendChild(component());
