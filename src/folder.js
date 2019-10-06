@@ -50,20 +50,27 @@ function resizeInput() {
 }
 
 function renameFolder(name) {
-    // console.log(document.getElementById(name.value))
-    // fillFolder(name.value, name.id, name.name, name.title);
-    console.log(name);
-    // return () => {
-        // console.log(name.title);
     document.getElementById(name.title).innerHTML = name.value
-    // }
 }
 
+let xXx = 0;
+let yYy = 0;
+newFolderNum = 1
+
 var i = document.getElementById("menu").style;
+var folderBtn = document.getElementById("newFolderBtn")
+
+folderBtn.addEventListener('click', function() {
+    newFolder(xXx, yYy)
+});
+// folderBtn.onclick = newFolder(top, left);
+
 if (document.addEventListener) {
     document.addEventListener('contextmenu', function (e) {
         var posX = e.clientX;
         var posY = e.clientY;
+        xXx = posX;
+        yYy = posY;
         menu(posX, posY);
         e.preventDefault();
     }, false);
@@ -78,6 +85,8 @@ if (document.addEventListener) {
         var posX = e.clientX;
         var posY = e.clientY;
         menu(posX, posY);
+        // xXx = posX;
+        // yYy = posY;
         e.preventDefault();
     });
     document.attachEvent('onclick', function (e) {
@@ -95,9 +104,7 @@ function menu(x, y) {
     i.opacity = "1";
 }
 
-newFolderNum = 1
-
-function newFolder() {
+function newFolder(xXx, yYy) {
     newFolderClose = "close" + String(newFolderNum)
     newFolderModal = "modal" + String(newFolderNum)
     newFolderName = "folder" + String(newFolderNum)
@@ -121,15 +128,16 @@ function newFolder() {
                         display: flex;
                         flex-direction: column;
                         position: absolute;
-                        left: 10%;
-                        top: 200px;
-                        text-align: center;`
+                        text-align: center;
+                        top: ${yYy}px;
+                        left: ${xXx}px;`
+    // newFolder.style = y + "px";
+    // newFolder.style = x + "px";
     document.body.appendChild(newFolder);
     dragElement(document.getElementById(newFolderName));
     var input = document.getElementById(folderNameInput); 
     input.addEventListener('input', resizeInput); 
     resizeInput.call(input);
-    console.log(document.getElementById(folderNameInput).value)
     fillFolder(document.getElementById(folderNameInput).value, newFolderName, newFolderModal, newFolderClose, newFolderNum)
     newFolderNum += 1;
 }

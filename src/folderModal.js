@@ -1,25 +1,5 @@
 
-// document.getElementById("modal-container").innerHTML = `<div id="myModal" class="modal">
-//                                                             <div class="modal-content">
-//                                                                 <div class="modal-header">
-//                                                                     <span class="close">&times;</span>
-//                                                                     <h2>${folder}</h2>
-//                                                                 </div>
-//                                                                 <div class="modal-body">
-                                                                    
-//                                                                 </div>
-//                                                                 <div class="modal-footer">
-//                                                                     <h3>
-//                                                                         <a href="https://angel.co/justin-andersen-1" class="fab fa-angellist" style="text-decoration: none; color: white;"></a>
-//                                                                         <a href="https://github.com/Zenithese" class="fab fa-github" style="text-decoration: none; color: white;"></a>
-//                                                                         <a href="https://www.linkedin.com/in/justin-andersen-54750b75/" class="fab fa-linkedin-in" style="text-decoration: none; color: white;"></a>
-//                                                                     </h3>
-//                                                                 </div>
-//                                                             </div>
-//                                                         </div>`
-
 function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", close = "close", num = "0") {
-    console.log(num);
     var newFolderContent = document.createElement("div");
     document.body.appendChild(newFolderContent);
     newFolderContent.innerHTML =   `<div id=${modal} class="modal">
