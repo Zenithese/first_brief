@@ -11,15 +11,15 @@ function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", 
                                             <div id="innerFolder-${num}" class="modal-body">
                                                 <button onclick="newNestedFolder(document.getElementById('innerFolder-${num}'))">New Folder</button>
                                                 <p>Somethings are easier forgotten, and somethings have to be remembered, and sometimes those same somethings are the same something...</p>
-                                            </div>
-                                            <div class="modal-footer">
+                                            </div> 
+                                        </div>
+                                        <div class="modal-footer">
                                                 <h3>
                                                     <a href="https://angel.co/justin-andersen-1" class="fab fa-angellist" style="text-decoration: none; color: white;"></a>
                                                     <a href="https://github.com/Zenithese" class="fab fa-github" style="text-decoration: none; color: white;"></a>
                                                     <a href="https://www.linkedin.com/in/justin-andersen-54750b75/" class="fab fa-linkedin-in" style="text-decoration: none; color: white;"></a>
                                                 </h3>
                                             </div>
-                                        </div>
                                     </div>`
 
     // Get the modal
@@ -108,7 +108,7 @@ function newNestedFolder(innerFolder) {
     newNestedFolder.style = `width: 100px;
                              text-align: center;
                              margin: 10px;`
-    dragElement(newNestedFolder, true);
+    dragElement(newNestedFolder);
     var input = document.getElementById(folderNameInput);
     input.addEventListener('input', resizeInput);
     resizeInput.call(input);

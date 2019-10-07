@@ -181,6 +181,10 @@ body {
   text-shadow: 1px 1px 8px black;
   font-weight: 100;
   text-align: center;
+  position: fixed;
+  left: 14.5%;
+  bottom: 22.7%;
+  z-index: 3;
 }
 
 .fa-angellist:before {
