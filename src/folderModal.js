@@ -8,7 +8,8 @@ function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", 
                                                 <span id=${close} class="close">&times;</span>
                                                 <h2 id=${String(num)}>${value}</h2>
                                             </div>
-                                            <div class="modal-body">
+                                            <div id="innerFolder-${num}" class="modal-body">
+                                                <button onclick="newNestedFolder(document.getElementById('innerFolder-${num}'))">New Folder</button>
                                                 <p>Somethings are easier forgotten, and somethings have to be remembered, and sometimes those same somethings are the same something...</p>
                                             </div>
                                             <div class="modal-footer">
@@ -50,3 +51,25 @@ function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", 
 }
 
 fillFolder()
+
+function newNestedFolder(innerFolder) {
+    // console.log(innerFolder);
+    newFolderClose = "close" + String(newFolderNum)
+    newFolderModal = "modal" + String(newFolderNum)
+    newFolderName = "folder" + String(newFolderNum)
+    newFolderNameItself = newFolderName + "-itself"
+    folderNameInput = "input" + String(newFolderNum)
+    let newNestedFolder = document.createElement("div");
+    newNestedFolder.innerHTML = `<style>
+                                    #${newFolderName}:hover {z-index: 1}
+                                 </style>
+                                 <div id=${newFolderNameItself} style="width: 100px;">
+                                    <img class="image" src="http://icon-park.com/imagefiles/folder_icon_yellow.png" style="max-width: 100%">
+                                 </div>
+                                 <div id="folder-name">
+                                    <input id=${folderNameInput} type="text" name=${newFolderModal} value="New Folder ${newFolderNum}" onchange="renameFolder(document.getElementById('${folderNameInput}'))" title=${newFolderNum}
+                                        style="background-color: transparent; border: none; font-size: 12px; color: white; text-shadow: 1px 1px black;">
+                                 </div>`
+    innerFolder.appendChild(newNestedFolder);
+    newFolderNum += 1;
+}

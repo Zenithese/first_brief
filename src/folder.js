@@ -119,7 +119,7 @@ function newFolder(xXx, yYy) {
                             </div>
                             <div id="folder-name">
                                 <input id=${folderNameInput} type="text" name=${newFolderModal} value="New Folder ${newFolderNum}" onchange="renameFolder(document.getElementById('${folderNameInput}'))" title=${newFolderNum}
-                                    style="background-color: transparent; border: none; font-size: 12px;">
+                                    style="background-color: transparent; border: none; font-size: 12px; color: white; text-shadow: 1px 1px black;">
                             </div>`
     // document.getElementById(folderNameInput).dataset.close = newFolderClose
     newFolder.id = newFolderName

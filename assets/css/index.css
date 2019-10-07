@@ -1,5 +1,10 @@
 body {
   background-color: indigo;
+  background: url(http://hdgifs.com/wp-content/uploads/2017/04/pixel-nature.gif) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 #folder {
@@ -72,6 +77,7 @@ body {
 }
 
 #menu a:hover {
+  cursor: pointer;
   color: #fff;
   background: #3879D9;
 }
@@ -113,7 +119,8 @@ body {
 
 /* Modal Content */
 .modal-content {
-  opacity: .7;
+  overflow-y: scroll;
+  /* opacity: .7; */
   position: fixed;
   left: 14.5%;
   bottom: 22.7%;
@@ -161,7 +168,11 @@ body {
   text-align: center;
 }
 
-.modal-body {padding: 2px 16px;}
+.modal-body {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2px 16px;
+}
 
 .modal-footer {
   padding: 2px 16px;
