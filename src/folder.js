@@ -1,6 +1,6 @@
 dragElement(document.getElementById("folder"));
 
-function dragElement(elmnt) {
+function dragElement(elmnt, nested = false) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     if (document.getElementById(elmnt.id + "-itself")) {
         /* if present, the header is where you move the DIV from:*/
@@ -32,6 +32,7 @@ function dragElement(elmnt) {
         // set the element's new position:
         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        restyle(elmnt, elmnt.style.top, elmnt.style.left)
     }
 
     function closeDragElement() {
@@ -132,7 +133,7 @@ function newFolder(xXx, yYy) {
                         top: ${yYy}px;
                         left: ${xXx}px;`
     document.body.appendChild(newFolder);
-    dragElement(document.getElementById(newFolderName));
+    dragElement(newFolder);
     var input = document.getElementById(folderNameInput); 
     input.addEventListener('input', resizeInput); 
     resizeInput.call(input);
