@@ -9,8 +9,7 @@ function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", 
                                                 <h2 id=${String(num)}>${value}</h2>
                                             </div>
                                             <div id="innerFolder-${num}" class="modal-body">
-                                                <button onclick="newNestedFolder(document.getElementById('innerFolder-${num}'))">New Folder</button>
-                                                <p>Somethings are easier forgotten, and somethings have to be remembered, and sometimes those same somethings are the same something...</p>
+                                                <button class="newNestedFolderBtn" onclick="newNestedFolder(document.getElementById('innerFolder-${num}'))">New Folder</button>
                                             </div> 
                                         </div>
                                         <div class="modal-footer">
@@ -125,3 +124,5 @@ function restyle(elmnt, top, left) {
                    top: ${top};
                    left: ${left};`
 }
+
+{/* <p>Some things are easier forgotten, and some things have to be remembered, and sometimes those same somethings are the same something...</p> */}
