@@ -121,6 +121,14 @@ function newNestedFolder(innerFolder) {
                              text-align: center;
                              margin: 10px;`
 
+    dragElement(newNestedFolder);
+    var input = document.getElementById(folderNameInput);
+    input.addEventListener('input', resizeInput);
+    resizeInput.call(input);
+    fillFolder(document.getElementById(folderNameInput).value, newFolderName, newFolderModal, newFolderClose, newFolderNum)
+    newFolderNum += 1;
+
+    // delete folder
     let x = document.getElementById("deleteDD").style;
     let deleteFolderBtn = document.getElementById("deleteFolderBtn");
 
@@ -136,6 +144,7 @@ function newNestedFolder(innerFolder) {
             e.preventDefault();
         }, false);
         document.addEventListener('click', function (e) {
+            onlyDelete();
             x.opacity = "0";
             setTimeout(function () {
                 x.visibility = "hidden";
@@ -149,6 +158,7 @@ function newNestedFolder(innerFolder) {
             e.preventDefault();
         });
         document.attachEvent('onclick', function (e) {
+            onlyDelete();
             x.opacity = "0";
             setTimeout(function () {
                 x.visibility = "hidden";
@@ -157,19 +167,17 @@ function newNestedFolder(innerFolder) {
     }
 
     function deleteDD(xx, yy) {
-        console.log('that\'s it')
+        DDD = true;
         x.top = yy + "px";
         x.left = xx + "px";
         x.visibility = "visible";
         x.opacity = "1";
     }
 
-    dragElement(newNestedFolder);
-    var input = document.getElementById(folderNameInput);
-    input.addEventListener('input', resizeInput);
-    resizeInput.call(input);
-    fillFolder(document.getElementById(folderNameInput).value, newFolderName, newFolderModal, newFolderClose, newFolderNum)
-    newFolderNum += 1;
+    function onlyDelete() {
+        DDD = false;
+    }
+
 }
 
 function restyle(elmnt, top, left) {

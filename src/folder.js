@@ -68,6 +68,7 @@ folderBtn.addEventListener('click', function() {
 
 if (document.addEventListener) {
     document.addEventListener('contextmenu', function (e) {
+        console.log(e)
         let posX = e.clientX;
         let posY = e.clientY;
         xXx = posX;
@@ -99,11 +100,15 @@ if (document.addEventListener) {
 }
 
 function menu(x, y) {
-    i.top = y + "px";
-    i.left = x + "px";
-    i.visibility = "visible";
-    i.opacity = "1";
+    if (!DDD) {
+        i.top = y + "px";
+        i.left = x + "px";
+        i.visibility = "visible";
+        i.opacity = "1";
+    }
 }
+
+var DDD = false;
 
 function newFolder(xXx, yYy) {
     newFolderClose = "close" + String(newFolderNum)
@@ -134,10 +139,62 @@ function newFolder(xXx, yYy) {
                         left: ${xXx}px;`
     // newFolder.addEventListener()
     document.body.appendChild(newFolder);
+
     dragElement(newFolder);
     var input = document.getElementById(folderNameInput); 
     input.addEventListener('input', resizeInput); 
     resizeInput.call(input);
     fillFolder(document.getElementById(folderNameInput).value, newFolderName, newFolderModal, newFolderClose, newFolderNum)
     newFolderNum += 1;
+
+    //delete folder
+    let x = document.getElementById("deleteDD").style;
+    let deleteFolderBtn = document.getElementById("deleteFolderBtn");
+
+    deleteFolderBtn.addEventListener('click', function () {
+        console.log('delete me already sexy');
+    });
+
+    if (newFolder.addEventListener) {
+        newFolder.addEventListener('contextmenu', function (e) {
+            console.log(e)
+            let posX = e.clientX;
+            let posY = e.clientY;
+            deleteDD(posX, posY);
+            e.preventDefault();
+        }, false);
+        document.addEventListener('click', function (e) {
+            onlyDelete();
+            x.opacity = "0";
+            setTimeout(function () {
+                x.visibility = "hidden";
+            }, 501);
+        }, false);
+    } else {
+        newFolder.attachEvent('oncontextmenu', function (e) {
+            let posX = e.clientX;
+            let posY = e.clientY;
+            deleteDD(posX, posY);
+            e.preventDefault();
+        });
+        document.attachEvent('onclick', function (e) {
+            onlyDelete();
+            x.opacity = "0";
+            setTimeout(function () {
+                x.visibility = "hidden";
+            }, 501);
+        });
+    }
+
+    function deleteDD(xx, yy) {
+        DDD = true;
+        x.top = yy + "px";
+        x.left = xx + "px";
+        x.visibility = "visible";
+        x.opacity = "1";
+    }
+
+    function onlyDelete() {
+        DDD = false;
+    }
 }
