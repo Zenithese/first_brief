@@ -68,7 +68,6 @@ folderBtn.addEventListener('click', function() {
 
 if (document.addEventListener) {
     document.addEventListener('contextmenu', function (e) {
-        console.log(e)
         let posX = e.clientX;
         let posY = e.clientY;
         xXx = posX;
@@ -152,19 +151,18 @@ function newFolder(xXx, yYy) {
     let deleteFolderBtn = document.getElementById("deleteFolderBtn");
 
     deleteFolderBtn.addEventListener('click', function () {
-        console.log('delete me already sexy');
+        newFolder.remove();
     });
 
     if (newFolder.addEventListener) {
         newFolder.addEventListener('contextmenu', function (e) {
-            console.log(e)
             let posX = e.clientX;
             let posY = e.clientY;
             deleteDD(posX, posY);
             e.preventDefault();
         }, false);
         document.addEventListener('click', function (e) {
-            onlyDelete();
+            DDD = false;
             x.opacity = "0";
             setTimeout(function () {
                 x.visibility = "hidden";
@@ -178,7 +176,7 @@ function newFolder(xXx, yYy) {
             e.preventDefault();
         });
         document.attachEvent('onclick', function (e) {
-            onlyDelete();
+            DDD = false;
             x.opacity = "0";
             setTimeout(function () {
                 x.visibility = "hidden";
@@ -192,9 +190,5 @@ function newFolder(xXx, yYy) {
         x.left = xx + "px";
         x.visibility = "visible";
         x.opacity = "1";
-    }
-
-    function onlyDelete() {
-        DDD = false;
     }
 }

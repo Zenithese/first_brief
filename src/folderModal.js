@@ -133,7 +133,7 @@ function newNestedFolder(innerFolder) {
     let deleteFolderBtn = document.getElementById("deleteFolderBtn");
 
     deleteFolderBtn.addEventListener('click', function () {
-        console.log('delete me already sexy');
+        newNestedFolder.remove();
     });
 
     if (newNestedFolder.addEventListener) {
@@ -144,7 +144,7 @@ function newNestedFolder(innerFolder) {
             e.preventDefault();
         }, false);
         document.addEventListener('click', function (e) {
-            onlyDelete();
+            DDD = false;
             x.opacity = "0";
             setTimeout(function () {
                 x.visibility = "hidden";
@@ -158,7 +158,7 @@ function newNestedFolder(innerFolder) {
             e.preventDefault();
         });
         document.attachEvent('onclick', function (e) {
-            onlyDelete();
+            DDD = false;
             x.opacity = "0";
             setTimeout(function () {
                 x.visibility = "hidden";
@@ -172,10 +172,6 @@ function newNestedFolder(innerFolder) {
         x.left = xx + "px";
         x.visibility = "visible";
         x.opacity = "1";
-    }
-
-    function onlyDelete() {
-        DDD = false;
     }
 
 }
@@ -195,7 +191,6 @@ function restyle(elmnt, top, left) {
 // let deleteFolderBtn = document.getElementById("deleteFolderBtn");
 
 // deleteFolderBtn.addEventListener('click', function () {
-//     console.log('delete me already sexy');
 // });
 
 // if (newNestedFolder.addEventListener) {
@@ -227,7 +222,6 @@ function restyle(elmnt, top, left) {
 // }
 
 // function deleteDD(xx, yy) {
-//     console.log('that\'s it')
 //     x.top = yy + "px";
 //     x.left = xx + "px";
 //     x.visibility = "visible";
