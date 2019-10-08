@@ -131,14 +131,15 @@ function newNestedFolder(innerFolder) {
     // delete folder
     let x = document.getElementById("deleteDD").style;
     let deleteFolderBtn = document.getElementById("deleteFolderBtn");
+    let folderToDelete = null;
 
     deleteFolderBtn.addEventListener('click', function () {
-        // newNestedFolder.remove();
-        document.getElementById(newFolderName).remove();
+        folderToDelete.remove();
     });
 
     if (newNestedFolder.addEventListener) {
         newNestedFolder.addEventListener('contextmenu', function (e) {
+            folderToDelete = e.path[2];
             let posX = e.clientX;
             let posY = e.clientY;
             deleteDD(posX, posY);

@@ -149,13 +149,15 @@ function newFolder(xXx, yYy) {
     //delete folder
     let x = document.getElementById("deleteDD").style;
     let deleteFolderBtn = document.getElementById("deleteFolderBtn");
+    let folderToDelete = null;
 
-    deleteFolderBtn.addEventListener('click', function () {
-        document.getElementById(newFolderName).remove();
+    deleteFolderBtn.addEventListener('click', function (e) {
+        folderToDelete.remove();
     });
 
     if (newFolder.addEventListener) {
         newFolder.addEventListener('contextmenu', function (e) {
+            folderToDelete = e.path[2];
             let posX = e.clientX;
             let posY = e.clientY;
             deleteDD(posX, posY);
