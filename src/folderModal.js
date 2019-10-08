@@ -191,45 +191,4 @@ function restyle(elmnt, top, left) {
                    left: ${left};`
 }
 
-// let x = document.getElementById("deleteDD").style;
-// let deleteFolderBtn = document.getElementById("deleteFolderBtn");
-
-// deleteFolderBtn.addEventListener('click', function () {
-// });
-
-// if (newNestedFolder.addEventListener) {
-//     newNestedFolder.addEventListener('contextmenu', function (e) {
-//         let posX = e.clientX;
-//         let posY = e.clientY;
-//         deleteDD(posX, posY);
-//         e.preventDefault();
-//     }, false);
-//     newNestedFolder.addEventListener('click', function (e) {
-//         x.opacity = "0";
-//         setTimeout(function () {
-//             x.visibility = "hidden";
-//         }, 501);
-//     }, false);
-// } else {
-//     newNestedFolder.attachEvent('oncontextmenu', function (e) {
-//         let posX = e.clientX;
-//         let posY = e.clientY;
-//         deleteDD(posX, posY);
-//         e.preventDefault();
-//     });
-//     newNestedFolder.attachEvent('onclick', function (e) {
-//         x.opacity = "0";
-//         setTimeout(function () {
-//             x.visibility = "hidden";
-//         }, 501);
-//     });
-// }
-
-// function deleteDD(xx, yy) {
-//     x.top = yy + "px";
-//     x.left = xx + "px";
-//     x.visibility = "visible";
-//     x.opacity = "1";
-// }
-
 {/* <p>Some things are easier forgotten, and some things have to be remembered, and sometimes those same somethings are the same something...</p> */}
