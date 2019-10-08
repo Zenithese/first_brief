@@ -44,7 +44,6 @@ function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", 
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
-        console.log(modals)
         // if (event.target == modal) {
         //     modal.style.display = "none";
         // }
@@ -52,8 +51,8 @@ function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", 
         for (let i = 0; i < modals.length; i++) {
             if (event.target == modals[i]) {
                 close = true;
+                break
             }
-            
         }
         if (close) {
             for (let j = 0; j < modals.length; j++) {
@@ -67,7 +66,6 @@ function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", 
 fillFolder()
 
 function newNestedFolder(innerFolder) {
-    // console.log(innerFolder);
     newFolderClose = "close" + String(newFolderNum)
     newFolderModal = "modal" + String(newFolderNum)
     newFolderName = "folder" + String(newFolderNum)
@@ -100,7 +98,6 @@ function newNestedFolder(innerFolder) {
 }
 
 function newNestedFolder(innerFolder) {
-    // console.log(innerFolder);
     newFolderClose = "close" + String(newFolderNum)
     newFolderModal = "modal" + String(newFolderNum)
     newFolderName = "folder" + String(newFolderNum)
@@ -123,6 +120,50 @@ function newNestedFolder(innerFolder) {
                              height: 100px;
                              text-align: center;
                              margin: 10px;`
+
+    let x = document.getElementById("deleteDD").style;
+    let deleteFolderBtn = document.getElementById("deleteFolderBtn");
+
+    deleteFolderBtn.addEventListener('click', function () {
+        console.log('delete me already sexy');
+    });
+
+    if (newNestedFolder.addEventListener) {
+        newNestedFolder.addEventListener('contextmenu', function (e) {
+            let posX = e.clientX;
+            let posY = e.clientY;
+            deleteDD(posX, posY);
+            e.preventDefault();
+        }, false);
+        document.addEventListener('click', function (e) {
+            x.opacity = "0";
+            setTimeout(function () {
+                x.visibility = "hidden";
+            }, 501);
+        }, false);
+    } else {
+        newNestedFolder.attachEvent('oncontextmenu', function (e) {
+            let posX = e.clientX;
+            let posY = e.clientY;
+            deleteDD(posX, posY);
+            e.preventDefault();
+        });
+        document.attachEvent('onclick', function (e) {
+            x.opacity = "0";
+            setTimeout(function () {
+                x.visibility = "hidden";
+            }, 501);
+        });
+    }
+
+    function deleteDD(xx, yy) {
+        console.log('that\'s it')
+        x.top = yy + "px";
+        x.left = xx + "px";
+        x.visibility = "visible";
+        x.opacity = "1";
+    }
+
     dragElement(newNestedFolder);
     var input = document.getElementById(folderNameInput);
     input.addEventListener('input', resizeInput);
@@ -141,5 +182,48 @@ function restyle(elmnt, top, left) {
                    top: ${top};
                    left: ${left};`
 }
+
+// let x = document.getElementById("deleteDD").style;
+// let deleteFolderBtn = document.getElementById("deleteFolderBtn");
+
+// deleteFolderBtn.addEventListener('click', function () {
+//     console.log('delete me already sexy');
+// });
+
+// if (newNestedFolder.addEventListener) {
+//     newNestedFolder.addEventListener('contextmenu', function (e) {
+//         let posX = e.clientX;
+//         let posY = e.clientY;
+//         deleteDD(posX, posY);
+//         e.preventDefault();
+//     }, false);
+//     newNestedFolder.addEventListener('click', function (e) {
+//         x.opacity = "0";
+//         setTimeout(function () {
+//             x.visibility = "hidden";
+//         }, 501);
+//     }, false);
+// } else {
+//     newNestedFolder.attachEvent('oncontextmenu', function (e) {
+//         let posX = e.clientX;
+//         let posY = e.clientY;
+//         deleteDD(posX, posY);
+//         e.preventDefault();
+//     });
+//     newNestedFolder.attachEvent('onclick', function (e) {
+//         x.opacity = "0";
+//         setTimeout(function () {
+//             x.visibility = "hidden";
+//         }, 501);
+//     });
+// }
+
+// function deleteDD(xx, yy) {
+//     console.log('that\'s it')
+//     x.top = yy + "px";
+//     x.left = xx + "px";
+//     x.visibility = "visible";
+//     x.opacity = "1";
+// }
 
 {/* <p>Some things are easier forgotten, and some things have to be remembered, and sometimes those same somethings are the same something...</p> */}

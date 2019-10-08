@@ -56,20 +56,20 @@ function renameFolder(name) {
 
 let xXx = 0;
 let yYy = 0;
-newFolderNum = 1
+newFolderNum = 1;
 
-var i = document.getElementById("menu").style;
-var folderBtn = document.getElementById("newFolderBtn")
+let i = document.getElementById("menu").style;
+let folderBtn = document.getElementById("newFolderBtn");
 
 folderBtn.addEventListener('click', function() {
-    newFolder(xXx, yYy)
+    newFolder(xXx, yYy);
 });
 // folderBtn.onclick = newFolder(top, left);
 
 if (document.addEventListener) {
     document.addEventListener('contextmenu', function (e) {
-        var posX = e.clientX;
-        var posY = e.clientY;
+        let posX = e.clientX;
+        let posY = e.clientY;
         xXx = posX;
         yYy = posY;
         menu(posX, posY);
@@ -83,8 +83,8 @@ if (document.addEventListener) {
     }, false);
 } else {
     document.attachEvent('oncontextmenu', function (e) {
-        var posX = e.clientX;
-        var posY = e.clientY;
+        let posX = e.clientX;
+        let posY = e.clientY;
         menu(posX, posY);
         // xXx = posX;
         // yYy = posY;
@@ -132,6 +132,7 @@ function newFolder(xXx, yYy) {
                         text-align: center;
                         top: ${yYy}px;
                         left: ${xXx}px;`
+    // newFolder.addEventListener()
     document.body.appendChild(newFolder);
     dragElement(newFolder);
     var input = document.getElementById(folderNameInput); 
