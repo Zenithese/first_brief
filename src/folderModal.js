@@ -105,6 +105,7 @@ function newNestedFolder(innerFolder) {
                                  </div>`
     newNestedFolder.id = newFolderName
     newNestedFolder.style = `width: 100px;
+                             height: 100px;
                              text-align: center;
                              margin: 10px;`
     dragElement(newNestedFolder);
@@ -117,6 +118,7 @@ function newNestedFolder(innerFolder) {
 
 function restyle(elmnt, top, left) {
     elmnt.style = `width: 100px;
+                   height: 100px;
                    display: flex;
                    flex-direction: column;
                    position: absolute;
