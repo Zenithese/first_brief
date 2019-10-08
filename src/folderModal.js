@@ -30,6 +30,8 @@ function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", 
     // Get the <span> element that closes the modal
     var span = document.getElementById(close);
 
+    var modals = document.getElementsByClassName("modal")
+
     // When the user clicks the button, open the modal 
     btn.ondblclick = function () {
         modal.style.display = "block";
@@ -42,8 +44,21 @@ function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", 
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+        console.log(modals)
+        // if (event.target == modal) {
+        //     modal.style.display = "none";
+        // }
+        let close = false;
+        for (let i = 0; i < modals.length; i++) {
+            if (event.target == modals[i]) {
+                close = true;
+            }
+            
+        }
+        if (close) {
+            for (let j = 0; j < modals.length; j++) {
+                modals[j].style.display = "none";
+            }
         }
     }
 
