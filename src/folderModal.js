@@ -134,7 +134,9 @@ function newNestedFolder(innerFolder) {
     let folderToDelete = null;
 
     deleteFolderBtn.addEventListener('click', function () {
-        folderToDelete.remove();
+        if (folderToDelete !== null) {
+            folderToDelete.remove();
+        }
     });
 
     if (newNestedFolder.addEventListener) {
