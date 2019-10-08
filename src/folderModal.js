@@ -133,7 +133,8 @@ function newNestedFolder(innerFolder) {
     let deleteFolderBtn = document.getElementById("deleteFolderBtn");
 
     deleteFolderBtn.addEventListener('click', function () {
-        newNestedFolder.remove();
+        // newNestedFolder.remove();
+        document.getElementById(newFolderName).remove();
     });
 
     if (newNestedFolder.addEventListener) {

@@ -151,7 +151,7 @@ function newFolder(xXx, yYy) {
     let deleteFolderBtn = document.getElementById("deleteFolderBtn");
 
     deleteFolderBtn.addEventListener('click', function () {
-        newFolder.remove();
+        document.getElementById(newFolderName).remove();
     });
 
     if (newFolder.addEventListener) {
