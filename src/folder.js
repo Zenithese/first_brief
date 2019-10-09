@@ -170,7 +170,7 @@ function newFolder(xXx, yYy) {
     newFolder.id = newFolderName
     newFolder.className = "droppable"
     newFolder.style =  `width: 100px;
-                        height: 120px;
+                        
                         
                         flex-direction: column;
                         position: absolute;
