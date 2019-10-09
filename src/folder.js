@@ -63,14 +63,18 @@ function dragElement(elmnt) {
         }
 
         function enterDroppable(elmnt) {
-            elmnt.style.background = 'darkturquoise';
-            elmnt.style.border = '2px solid black';
+            elmnt.style.background = 'rgba(102, 255, 255, 0.5)';
+            // elmnt.style.outlineStyle = 'solid'
+            // elmnt.style.outlineWidth = '2px';
             elmnt.style.borderRadius = '8px';
+            elmnt.style.boxShadow = "0px 0px 0px 2px darkslategray";
         }
 
         function leaveDroppable(elmnt) {
             elmnt.style.background = '';
             elmnt.style.border = '';
+            // elmnt.style.outlineStyle = '';
+            elmnt.style.boxShadow = '';
         }
     }
 
