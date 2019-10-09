@@ -116,6 +116,7 @@ function newNestedFolder(innerFolder) {
                                         style="background-color: transparent; border: none; font-size: 12px; color: white; text-shadow: 1px 1px black;">
                                  </div>`
     newNestedFolder.id = newFolderName
+    newNestedFolder.className = "droppable"
     newNestedFolder.style = `width: 100px;
                              height: 100px;
                              text-align: center;
@@ -183,7 +184,7 @@ function newNestedFolder(innerFolder) {
 function restyle(elmnt, top, left) {
     elmnt.style = `width: 100px;
                    height: 100px;
-                   
+                   opacity: .8;
                    flex-direction: column;
                    position: absolute;
                    text-align: center;

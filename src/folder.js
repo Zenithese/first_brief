@@ -37,14 +37,12 @@ function dragElement(elmnt) {
         restyle(elmnt, elmnt.style.top, elmnt.style.left)
 
         elmnt.hidden = true;
-        let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+        let elmntBelow = document.elementFromPoint(event.clientX, event.clientY);
         elmnt.hidden = false;
 
-        console.log(elemBelow)
+        if (!elmntBelow) return;
 
-        if (!elemBelow) return;
-
-        let droppableBelow = elemBelow.closest(".droppable");
+        let droppableBelow = elmntBelow.closest(".droppable");
         
 
         if (currentDroppable != droppableBelow) {
@@ -64,14 +62,15 @@ function dragElement(elmnt) {
             }
         }
 
-        function enterDroppable(elem) {
-            console.log(elem)
-            elem.style.background = 'pink';
+        function enterDroppable(elmnt) {
+            elmnt.style.background = 'darkturquoise';
+            elmnt.style.border = '2px solid black';
+            elmnt.style.borderRadius = '8px';
         }
 
-        function leaveDroppable(elem) {
-            console.log(elem)
-            elem.style.background = '';
+        function leaveDroppable(elmnt) {
+            elmnt.style.background = '';
+            elmnt.style.border = '';
         }
     }
 
@@ -79,6 +78,7 @@ function dragElement(elmnt) {
         /* stop moving when mouse button is released:*/
         document.onmouseup = null;
         document.onmousemove = null;
+        elmnt.style.opacity = '1';
     }
 }
 
@@ -168,6 +168,7 @@ function newFolder(xXx, yYy) {
                             </div>`
     // document.getElementById(folderNameInput).dataset.close = newFolderClose
     newFolder.id = newFolderName
+    newFolder.className = "droppable"
     newFolder.style =  `width: 100px;
                         height: 120px;
                         
