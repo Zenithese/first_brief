@@ -1,3 +1,6 @@
+var readyToDrop = false;
+var droppableBelow = null;
+
 dragElement(document.getElementById("folder"));
 
 function dragElement(elmnt) {
@@ -42,7 +45,7 @@ function dragElement(elmnt) {
 
         if (!elmntBelow) return;
 
-        let droppableBelow = elmntBelow.closest(".droppable");
+        droppableBelow = elmntBelow.closest(".droppable");
         
 
         if (currentDroppable != droppableBelow) {
@@ -64,17 +67,16 @@ function dragElement(elmnt) {
 
         function enterDroppable(elmnt) {
             elmnt.style.background = 'rgba(102, 255, 255, 0.5)';
-            // elmnt.style.outlineStyle = 'solid'
-            // elmnt.style.outlineWidth = '2px';
             elmnt.style.borderRadius = '8px';
             elmnt.style.boxShadow = "0px 0px 0px 2px darkslategray";
+            readyToDrop = true;
         }
 
         function leaveDroppable(elmnt) {
             elmnt.style.background = '';
             elmnt.style.border = '';
-            // elmnt.style.outlineStyle = '';
             elmnt.style.boxShadow = '';
+            readyToDrop = false;
         }
     }
 
@@ -83,7 +85,21 @@ function dragElement(elmnt) {
         document.onmouseup = null;
         document.onmousemove = null;
         elmnt.style.opacity = '1';
+        if (readyToDrop) {
+            // nest folder in folder below
+            // console.log(droppableBelow.id.slice(droppableBelow.id.length - 1))
+            dropIn(elmnt, droppableBelow.id.slice(droppableBelow.id.length - 1))
+        }
     }
+}
+
+function dropIn(topFolder, bottomFolderNumber) {
+    if (bottomFolderNumber === "r") {
+        bottomFolderNumber = 0;
+    };
+    innerFolder = 'innerFolder-' + bottomFolderNumber;
+    // console.log(document.getElementById(innerFolder))
+    document.getElementById(innerFolder).appendChild(topFolder);
 }
 
 var input = document.querySelector('input'); // get the input element
