@@ -21,6 +21,8 @@ function dragElement(elmnt) {
         document.onmousemove = elementDrag;
     }
 
+    let currentDroppable = null;
+
     function elementDrag(e) {
         e = e || window.event;
         e.preventDefault();
@@ -33,6 +35,44 @@ function dragElement(elmnt) {
         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
         restyle(elmnt, elmnt.style.top, elmnt.style.left)
+
+        elmnt.hidden = true;
+        let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+        elmnt.hidden = false;
+
+        console.log(elemBelow)
+
+        if (!elemBelow) return;
+
+        let droppableBelow = elemBelow.closest(".droppable");
+        
+
+        if (currentDroppable != droppableBelow) {
+            // we're flying in or out...
+            // note: both values can be null
+            //   currentDroppable=null if we were not over a droppable before this event (e.g over an empty space)
+            //   droppableBelow=null if we're not over a droppable now, during this event
+
+            if (currentDroppable) {
+                // the logic to process "flying out" of the droppable (remove highlight)
+                leaveDroppable(currentDroppable);
+            }
+            currentDroppable = droppableBelow;
+            if (currentDroppable) {
+                // the logic to process "flying in" of the droppable
+                enterDroppable(currentDroppable);
+            }
+        }
+
+        function enterDroppable(elem) {
+            console.log(elem)
+            elem.style.background = 'pink';
+        }
+
+        function leaveDroppable(elem) {
+            console.log(elem)
+            elem.style.background = '';
+        }
     }
 
     function closeDragElement() {
@@ -130,7 +170,7 @@ function newFolder(xXx, yYy) {
     newFolder.id = newFolderName
     newFolder.style =  `width: 100px;
                         height: 120px;
-                        display: flex;
+                        
                         flex-direction: column;
                         position: absolute;
                         text-align: center;

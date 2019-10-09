@@ -183,7 +183,7 @@ function newNestedFolder(innerFolder) {
 function restyle(elmnt, top, left) {
     elmnt.style = `width: 100px;
                    height: 100px;
-                   display: flex;
+                   
                    flex-direction: column;
                    position: absolute;
                    text-align: center;
