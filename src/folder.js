@@ -64,20 +64,20 @@ function dragElement(elmnt) {
                 enterDroppable(currentDroppable);
             }
         }
+    }
 
-        function enterDroppable(elmnt) {
-            elmnt.style.background = 'rgba(102, 255, 255, 0.5)';
-            elmnt.style.borderRadius = '8px';
-            elmnt.style.boxShadow = "0px 0px 0px 2px darkslategray";
-            readyToDrop = true;
-        }
+    function enterDroppable(elmnt) {
+        elmnt.style.background = 'rgba(102, 255, 255, 0.5)';
+        elmnt.style.borderRadius = '8px';
+        elmnt.style.boxShadow = "0px 0px 0px 2px darkslategray";
+        readyToDrop = true;
+    }
 
-        function leaveDroppable(elmnt) {
-            elmnt.style.background = '';
-            elmnt.style.border = '';
-            elmnt.style.boxShadow = '';
-            readyToDrop = false;
-        }
+    function leaveDroppable(elmnt) {
+        elmnt.style.background = '';
+        elmnt.style.border = '';
+        elmnt.style.boxShadow = '';
+        readyToDrop = false;
     }
 
     function closeDragElement() {
@@ -89,6 +89,7 @@ function dragElement(elmnt) {
             // nest folder in folder below
             // console.log(droppableBelow.id.slice(droppableBelow.id.length - 1))
             dropIn(elmnt, droppableBelow.id.slice(droppableBelow.id.length - 1))
+            leaveDroppable(droppableBelow)
         }
     }
 }
