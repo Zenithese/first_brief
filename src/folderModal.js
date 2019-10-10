@@ -34,6 +34,7 @@ function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", 
 
     // When the user clicks the button, open the modal 
     btn.ondblclick = function () {
+        console.log('oh yes!')
         modal.style.display = "block";
     }
 
@@ -62,8 +63,6 @@ function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", 
     }
 
 }
-
-fillFolder()
 
 // function newNestedFolder(innerFolder) {
 //     newFolderClose = "close" + String(newFolderNum)

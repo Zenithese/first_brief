@@ -1,8 +1,6 @@
 var readyToDrop = false;
 var droppableBelow = null;
 
-dragElement(document.getElementById("folder"));
-
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     if (document.getElementById(elmnt.id + "-itself")) {
@@ -99,8 +97,9 @@ function dropIn(topFolder, bottomFolderNumber) {
         bottomFolderNumber = 0;
     };
     innerFolder = 'innerFolder-' + bottomFolderNumber;
-    // console.log(document.getElementById(innerFolder))
     document.getElementById(innerFolder).appendChild(topFolder);
+    topFolder.style.position = '';
+    topFolder.style.margin = '10px';
 }
 
 var input = document.querySelector('input'); // get the input element
@@ -187,12 +186,9 @@ function newFolder(xXx, yYy) {
                                 <input id=${folderNameInput} type="text" name=${newFolderModal} value="New Folder ${newFolderNum}" onchange="renameFolder(document.getElementById('${folderNameInput}'))" title=${newFolderNum}
                                     style="background-color: transparent; border: none; font-size: 12px; color: white; text-shadow: 1px 1px black;">
                             </div>`
-    // document.getElementById(folderNameInput).dataset.close = newFolderClose
     newFolder.id = newFolderName
     newFolder.className = "droppable"
-    newFolder.style =  `width: 100px;
-                        
-                        
+    newFolder.style = `width: 100px;
                         flex-direction: column;
                         position: absolute;
                         text-align: center;
@@ -258,59 +254,3 @@ function newFolder(xXx, yYy) {
         x.opacity = "1";
     }
 }
-
-//delete functionality for automatic folder
-
-function firstFolder() {
-    let firstFolder = document.getElementById("folder")
-    let x = document.getElementById("deleteDD").style;
-    let deleteFolderBtn = document.getElementById("deleteFolderBtn");
-    let folderToDelete = null;
-
-    deleteFolderBtn.addEventListener('click', function (e) {
-        if (folderToDelete !== null) {
-            folderToDelete.remove();
-        }
-    });
-
-    if (firstFolder.addEventListener) {
-        firstFolder.addEventListener('contextmenu', function (e) {
-            folderToDelete = e.path[2];
-            let posX = e.clientX;
-            let posY = e.clientY;
-            deleteDD(posX, posY);
-            e.preventDefault();
-        }, false);
-        document.addEventListener('click', function (e) {
-            DDD = false;
-            x.opacity = "0";
-            setTimeout(function () {
-                x.visibility = "hidden";
-            }, 501);
-        }, false);
-    } else {
-        firstFolder.attachEvent('oncontextmenu', function (e) {
-            let posX = e.clientX;
-            let posY = e.clientY;
-            deleteDD(posX, posY);
-            e.preventDefault();
-        });
-        document.attachEvent('onclick', function (e) {
-            DDD = false;
-            x.opacity = "0";
-            setTimeout(function () {
-                x.visibility = "hidden";
-            }, 501);
-        });
-    }
-
-    function deleteDD(xx, yy) {
-        DDD = true;
-        x.top = yy + "px";
-        x.left = xx + "px";
-        x.visibility = "visible";
-        x.opacity = "1";
-    }
-}
-
-firstFolder();
