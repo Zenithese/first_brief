@@ -29,6 +29,7 @@ function dragElement(elmnt) {
     let currentDroppable = null;
 
     function elementDrag(e) {
+        // document.body.appendChild(elmnt)
         e = e || window.event;
         e.preventDefault();
         // calculate the new cursor position:
@@ -37,10 +38,10 @@ function dragElement(elmnt) {
         pos3 = e.clientX;
         pos4 = e.clientY;
 
-        screenPos1 = screenPos3 - e.screenX;
-        screenPos2 = screenPos4 - e.screenY;
-        screenPos3 = e.screenX;
-        screenPos4 = e.screenY;
+        // screenPos1 = screenPos3 - e.screenX;
+        // screenPos2 = screenPos4 - e.screenY;
+        // screenPos3 = e.screenX;
+        // screenPos4 = e.screenY;
 
         // set the element's new position:
 
@@ -111,7 +112,6 @@ function dragElement(elmnt) {
         elmnt.style.opacity = '1';
         if (readyToDrop && droppableBelow !== document.body && droppableBelow !== null) {
             // nest folder in folder below
-            // console.log(droppableBelow.id.slice(droppableBelow.id.length - 1))
             dropIn(elmnt, droppableBelow.id.slice(droppableBelow.id.length - 1))
             leaveDroppable(droppableBelow)
         }
