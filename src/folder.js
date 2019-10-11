@@ -41,11 +41,6 @@ function dragElement(elmnt) {
         pos4 = e.clientY;
 
         // set the element's new position:
-
-        // console.log(elmnt.offsetTop - pos2 - 28);
-        // console.log(elmnt.offsetTop - pos2);
-        // console.log(elmnt.offsetTop);
-        // console.log(pos2);
         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
         restyle(elmnt, elmnt.style.top, elmnt.style.left)
@@ -67,6 +62,7 @@ function dragElement(elmnt) {
             // let modalHeader = document.getElementById(`modal-header${number}`)
             yIntersection = (modalContent.offsetTop + elmnt.offsetTop + 28 - pos2) + "px"; // 28 is the height of #modal-header
             xIntersection = (modalContent.offsetLeft + elmnt.offsetLeft - pos1) + "px";
+
             let portal = document.getElementById(`portal${number}`) /**/
             if (!appended) {
                 portal.appendChild(elmnt)
@@ -132,11 +128,6 @@ function dragElement(elmnt) {
         if (elmntBelow.className === "modal-body") { /**/
             elmntBelow.appendChild(elmnt);
         }
-
-        // if (elmntBelow !== null && elmntBelow.className === "modal-body") {
-        //     dropIn(elmnt, elmntBelow.id.slice(elmntBelow.id.length - 1))
-        //     // readyToDrop = false;
-        // }
     }
 }
 
@@ -145,7 +136,6 @@ function dropIn(topFolder, bottomFolderNumber) {
         bottomFolderNumber = 0;
     };
     innerFolder = 'innerFolder-' + bottomFolderNumber;
-    // appended ? null : document.getElementById(innerFolder).appendChild(topFolder);
     document.getElementById(innerFolder).appendChild(topFolder);
     topFolder.style.position = '';
     topFolder.style.margin = '10px';

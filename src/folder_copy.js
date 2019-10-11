@@ -60,6 +60,13 @@ function dragElement(elmnt) {
             // let modalHeader = document.getElementById(`modal-header${number}`)
             yIntersection = (modalContent.offsetTop + elmnt.offsetTop + 28 - pos2) + "px"; // 28 is the height of #modal-header
             xIntersection = (modalContent.offsetLeft + elmnt.offsetLeft - pos1) + "px";
+
+            // let clone = elmnt.cloneNode(true)
+            // let portal = document.getElementById(`portal${number}`) /**/
+            // if (!appended) {
+            //     portal.appendChild(clone)
+            //     appended = true;
+            // }
         }
         
 
