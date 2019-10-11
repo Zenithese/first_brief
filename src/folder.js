@@ -40,11 +40,6 @@ function dragElement(elmnt) {
         pos3 = e.clientX;
         pos4 = e.clientY;
 
-        // screenPos1 = screenPos3 - e.screenX;
-        // screenPos2 = screenPos4 - e.screenY;
-        // screenPos3 = e.screenX;
-        // screenPos4 = e.screenY;
-
         // set the element's new position:
 
         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
@@ -60,7 +55,8 @@ function dragElement(elmnt) {
         droppableBelow = elmntBelow.closest(".droppable");
 
         // logic for moving folder outside of another folder 
-        if (elmntBelow.className === "modal" || elmntBelow.className === "modal-header" /*|| elmntBelow.className === "modal-body" */) {
+        if (elmntBelow.className === "modal" || elmntBelow.className === "modal-header" || elmntBelow.className === "modal-body") {
+        // if (elmntBelow.className === "modal" || elmntBelow.className === "modal-header") {
             let number = elmntBelow.id.slice(elmntBelow.id.length - 1) === "l" ? 0 : elmntBelow.id.slice(elmntBelow.id.length - 1);
             let portal = document.getElementById(`portal${number}`)
             if (!appended) {
@@ -134,7 +130,7 @@ function dragElement(elmnt) {
             leaveDroppable(droppableBelow)
         }
 
-        if (readyToDrop && droppableBelow === document.body) {
+        if (readyToDrop && droppableBelow === document.body && elmntBelow.className !== "modal-body") {
             dropOut(elmnt)
         }
 
