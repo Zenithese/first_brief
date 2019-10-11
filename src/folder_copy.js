@@ -39,13 +39,7 @@ function dragElement(elmnt) {
         pos3 = e.clientX;
         pos4 = e.clientY;
 
-        // screenPos1 = screenPos3 - e.screenX;
-        // screenPos2 = screenPos4 - e.screenY;
-        // screenPos3 = e.screenX;
-        // screenPos4 = e.screenY;
-
         // set the element's new position:
-
         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
         restyle(elmnt, elmnt.style.top, elmnt.style.left)
