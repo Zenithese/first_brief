@@ -60,7 +60,6 @@ function dragElement(elmnt) {
 
         // logic for moving folder outside of another folder 
         if (elmntBelow.className === "modal") {
-            console.log("OH MY GOD");
             droppableBelow = document.body
             let number = elmntBelow.id.slice(elmntBelow.id.length - 1) === "l" ? 0 : elmntBelow.id.slice(elmntBelow.id.length - 1);
             let modalContent = document.getElementById(`modal-content${number}`)
