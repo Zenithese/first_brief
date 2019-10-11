@@ -8,9 +8,11 @@ function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", 
                                                 <span id=${close} class="close">&times;</span>
                                                 <h2 id=${String(num)}>${value}</h2>
                                             </div>
-                                            <div id="innerFolder-${num}" class="modal-body">
-                                                <button class="newNestedFolderBtn" onclick="newNestedFolder(document.getElementById('innerFolder-${num}'))">New Folder</button>
-                                            </div> 
+                                            <div id="portal${num}">
+                                                <div id="innerFolder-${num}" class="modal-body">
+                                                    <button class="newNestedFolderBtn" onclick="newNestedFolder(document.getElementById('innerFolder-${num}'))">New Folder</button>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                                 <h3>
@@ -34,7 +36,6 @@ function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", 
 
     // When the user clicks the button, open the modal 
     btn.ondblclick = function () {
-        console.log('oh yes!')
         modal.style.display = "block";
     }
 
@@ -191,6 +192,7 @@ function restyle(elmnt, top, left) {
                    text-align: center;
                    top: ${top};
                    left: ${left};`
+                //    z-index: 10;`
 }
 
 {/* <p>Some things are easier forgotten, and some things have to be remembered, and sometimes those same somethings are the same something...</p> */}
