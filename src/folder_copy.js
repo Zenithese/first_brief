@@ -1,5 +1,6 @@
 var readyToDrop = false;
 var droppableBelow = null;
+var elmntBelow = null;
 var xIntersection = 0;
 var yIntersection = 0;
 
@@ -50,7 +51,7 @@ function dragElement(elmnt) {
         restyle(elmnt, elmnt.style.top, elmnt.style.left)
 
         elmnt.hidden = true;
-        let elmntBelow = document.elementFromPoint(event.clientX, event.clientY);
+        elmntBelow = document.elementFromPoint(event.clientX, event.clientY);
         elmnt.hidden = false;
 
         if (!elmntBelow) return;
@@ -137,6 +138,7 @@ function dropOut(topFolder) {
     document.body.appendChild(topFolder)
     topFolder.style.left = xIntersection;
     topFolder.style.top = yIntersection;
+    droppableBelow = null;
 }
 
 var input = document.querySelector('input'); // get the input element

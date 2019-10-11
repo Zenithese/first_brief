@@ -59,26 +59,19 @@ function dragElement(elmnt) {
         droppableBelow = elmntBelow.closest(".droppable");
 
         // logic for moving folder outside of another folder 
-        if (elmntBelow.className === "modal" || elmntBelow.className === "modal-header" || elmntBelow.className === "modal-body") {
-        // if (elmntBelow.className === "modal" || elmntBelow.className === "modal-header") {
-            let number = elmntBelow.id.slice(elmntBelow.id.length - 1) === "l" ? 0 : elmntBelow.id.slice(elmntBelow.id.length - 1);
-            let portal = document.getElementById(`portal${number}`)
-            if (!appended) {
-                portal.appendChild(elmnt)
-                appended = true;
-                // elmnt.style.zIndex = 10;
-            }
-            // if (elmntBelow.className === "modal-body") {
-            //     elmntBelow.appendChild(elmnt)
-            //     appended = true;
-            // }
+        if (elmntBelow.className === "modal" || elmntBelow.className === "modal-header" || elmntBelow.className === "modal-body") { /**/
+        // if (elmntBelow.className === "modal") {
             droppableBelow = document.body
+            let number = elmntBelow.id.slice(elmntBelow.id.length - 1) === "l" ? 0 : elmntBelow.id.slice(elmntBelow.id.length - 1);
             let modalContent = document.getElementById(`modal-content${number}`)
             // let modalHeader = document.getElementById(`modal-header${number}`)
             yIntersection = (modalContent.offsetTop + elmnt.offsetTop + 28 - pos2) + "px"; // 28 is the height of #modal-header
             xIntersection = (modalContent.offsetLeft + elmnt.offsetLeft - pos1) + "px";
-            // yIntersection = (elmnt.offsetTop - pos2) + "px";
-            // xIntersection = (elmnt.offsetLeft - pos1) + "px";
+            let portal = document.getElementById(`portal${number}`) /**/
+            if (!appended) {
+                portal.appendChild(elmnt)
+                appended = true;
+            }
         }
         
 
@@ -120,10 +113,6 @@ function dragElement(elmnt) {
 
     function closeDragElement() {
         /* stop moving when mouse button is released:*/
-        appended = false;
-        if (elmntBelow.className === "modal-body") {
-            elmntBelow.appendChild(elmnt);
-        }
         document.onmouseup = null;
         document.onmousemove = null;
         elmnt.style.opacity = '1';
@@ -134,8 +123,14 @@ function dragElement(elmnt) {
             leaveDroppable(droppableBelow)
         }
 
-        if (readyToDrop && droppableBelow === document.body && elmntBelow.className !== "modal-body") {
+        if (readyToDrop && droppableBelow === document.body && elmntBelow.className !== "modal-body") { /**/
+        // if (readyToDrop && droppableBelow === document.body) {
             dropOut(elmnt)
+        }
+
+        appended = false;
+        if (elmntBelow.className === "modal-body") { /**/
+            elmntBelow.appendChild(elmnt);
         }
 
         // if (elmntBelow !== null && elmntBelow.className === "modal-body") {
@@ -150,9 +145,8 @@ function dropIn(topFolder, bottomFolderNumber) {
         bottomFolderNumber = 0;
     };
     innerFolder = 'innerFolder-' + bottomFolderNumber;
-    console.log(document.getElementById(innerFolder))
-    appended ? null : document.getElementById(innerFolder).appendChild(topFolder);
-    // document.getElementById(innerFolder).appendChild(topFolder);
+    // appended ? null : document.getElementById(innerFolder).appendChild(topFolder);
+    document.getElementById(innerFolder).appendChild(topFolder);
     topFolder.style.position = '';
     topFolder.style.margin = '10px';
     topFolder.style.height = '100px';
@@ -162,6 +156,7 @@ function dropOut(topFolder) {
     document.body.appendChild(topFolder)
     topFolder.style.left = xIntersection;
     topFolder.style.top = yIntersection;
+    droppableBelow = null;
 }
 
 var input = document.querySelector('input'); // get the input element
@@ -239,7 +234,7 @@ function newFolder(xXx, yYy) {
     folderNameInput = "input" + String(newFolderNum)
     var newFolder = document.createElement("div");
     newFolder.innerHTML =  `<style>
-                                #${newFolderName}:hover {z-index: 1}
+                                #${newFolderName}:hover {z-index: 10}
                             </style>
                             <div id=${newFolderNameItself} style="width: 100px;">
                                 <img class="image" src="http://icon-park.com/imagefiles/folder_icon_yellow.png" style="max-width: 100%">

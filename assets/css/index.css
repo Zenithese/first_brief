@@ -237,7 +237,7 @@ body {
   color: floralwhite;
   text-shadow: 1px 1px 8px black;
   text-align: center;
-  background-color: black;
+  /* background-color: black; */
   position: fixed;
   width: 66%;
   border-radius: 15px;
@@ -252,6 +252,7 @@ body {
 
 .portal {
   transform: translateY(4.6vh);
+  z-index: 100;
 }
 
 .modal-body {
