@@ -8,11 +8,11 @@ function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", 
                                                 <span id=${close} class="close">&times;</span>
                                                 <h2 id=${String(num)}>${value}</h2>
                                             </div>
-                                            <div id="portal${num}">
-                                                <div id="innerFolder-${num}" class="modal-body">
-                                                    <button class="newNestedFolderBtn" onclick="newNestedFolder(document.getElementById('innerFolder-${num}'))">New Folder</button>
-                                                </div>
+                                            <div id="portal${num}" class="portal"></div>
+                                            <div id="innerFolder-${num}" class="modal-body">
+                                                <button class="newNestedFolderBtn" onclick="newNestedFolder(document.getElementById('innerFolder-${num}'))">New Folder</button>
                                             </div>
+                                            
                                         </div>
                                         <div class="modal-footer">
                                                 <h3>
@@ -185,6 +185,7 @@ function newNestedFolder(innerFolder) {
 }
 
 function restyle(elmnt, top, left) {
+    
     elmnt.style = `width: 100px;
                    opacity: .8;
                    flex-direction: column;

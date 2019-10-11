@@ -22,8 +22,8 @@ function dragElement(elmnt) {
         // get the mouse cursor position at startup:
         pos3 = e.clientX;
         pos4 = e.clientY;
-        screenPos3 = e.screenX;
-        screenPos4 = e.screenY;
+        // screenPos3 = e.screenX;
+        // screenPos4 = e.screenY;
         document.onmouseup = closeDragElement;
         // call a function whenever the cursor moves:
         document.onmousemove = elementDrag;
@@ -42,6 +42,10 @@ function dragElement(elmnt) {
 
         // set the element's new position:
 
+        // console.log(elmnt.offsetTop - pos2 - 28);
+        // console.log(elmnt.offsetTop - pos2);
+        // console.log(elmnt.offsetTop);
+        // console.log(pos2);
         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
         restyle(elmnt, elmnt.style.top, elmnt.style.left)
