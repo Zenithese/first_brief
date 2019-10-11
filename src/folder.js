@@ -125,7 +125,7 @@ function dragElement(elmnt) {
         }
 
         appended = false;
-        if (elmntBelow.className === "modal-body") { /**/
+        if (elmntBelow.className === "modal-body" && elmntBelow !== null) { /**/
             elmntBelow.appendChild(elmnt);
         }
     }
@@ -224,7 +224,7 @@ function newFolder(xXx, yYy) {
     folderNameInput = "input" + String(newFolderNum)
     var newFolder = document.createElement("div");
     newFolder.innerHTML =  `<style>
-                                #${newFolderName}:hover {z-index: 10}
+                                #${newFolderName}:hover {z-index: 1}
                             </style>
                             <div id=${newFolderNameItself} style="width: 100px;">
                                 <img class="image" src="http://icon-park.com/imagefiles/folder_icon_yellow.png" style="max-width: 100%">
