@@ -3,8 +3,8 @@ function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", 
     var newFolderContent = document.createElement("div");
     document.body.appendChild(newFolderContent);
     newFolderContent.innerHTML =   `<div id=${modal} class="modal">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
+                                        <div id="modal-content${num}" class="modal-content">
+                                            <div id="modal-header${num}" class="modal-header">
                                                 <span id=${close} class="close">&times;</span>
                                                 <h2 id=${String(num)}>${value}</h2>
                                             </div>

@@ -1,5 +1,7 @@
 var readyToDrop = false;
 var droppableBelow = null;
+var xIntersection = 0;
+var yIntersection = 0;
 
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -17,6 +19,8 @@ function dragElement(elmnt) {
         // get the mouse cursor position at startup:
         pos3 = e.clientX;
         pos4 = e.clientY;
+        screenPos3 = e.screenX;
+        screenPos4 = e.screenY;
         document.onmouseup = closeDragElement;
         // call a function whenever the cursor moves:
         document.onmousemove = elementDrag;
@@ -32,7 +36,14 @@ function dragElement(elmnt) {
         pos2 = pos4 - e.clientY;
         pos3 = e.clientX;
         pos4 = e.clientY;
+
+        screenPos1 = screenPos3 - e.screenX;
+        screenPos2 = screenPos4 - e.screenY;
+        screenPos3 = e.screenX;
+        screenPos4 = e.screenY;
+
         // set the element's new position:
+
         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
         restyle(elmnt, elmnt.style.top, elmnt.style.left)
@@ -44,6 +55,17 @@ function dragElement(elmnt) {
         if (!elmntBelow) return;
 
         droppableBelow = elmntBelow.closest(".droppable");
+
+        // logic for moving folder outside of another folder 
+        if (elmntBelow.className === "modal") {
+            console.log("OH MY GOD");
+            droppableBelow = document.body
+            let number = elmntBelow.id.slice(elmntBelow.id.length - 1) === "l" ? 0 : elmntBelow.id.slice(elmntBelow.id.length - 1);
+            let modalContent = document.getElementById(`modal-content${number}`)
+            // let modalHeader = document.getElementById(`modal-header${number}`)
+            yIntersection = (modalContent.offsetTop + elmnt.offsetTop + 28 - pos2) + "px"; // 28 is the height of #modal-header
+            xIntersection = (modalContent.offsetLeft + elmnt.offsetLeft - pos1) + "px";
+        }
         
 
         if (currentDroppable != droppableBelow) {
@@ -64,17 +86,21 @@ function dragElement(elmnt) {
         }
     }
 
-    function enterDroppable(elmnt) {
-        elmnt.style.background = 'rgba(102, 255, 255, 0.5)';
-        elmnt.style.borderRadius = '8px';
-        elmnt.style.boxShadow = "0px 0px 0px 2px darkslategray";
+    function enterDroppable(droppableBelow) {
+        if (droppableBelow !== document.body) {
+            droppableBelow.style.background = 'rgba(102, 255, 255, 0.5)';
+            droppableBelow.style.borderRadius = '8px';
+            droppableBelow.style.boxShadow = "0px 0px 0px 2px darkslategray";
+        }
         readyToDrop = true;
     }
 
-    function leaveDroppable(elmnt) {
-        elmnt.style.background = '';
-        elmnt.style.border = '';
-        elmnt.style.boxShadow = '';
+    function leaveDroppable(droppableBelow) {
+        if (droppableBelow !== document.body) {
+            droppableBelow.style.background = '';
+            droppableBelow.style.border = '';
+            droppableBelow.style.boxShadow = '';
+        }
         readyToDrop = false;
     }
 
@@ -83,11 +109,15 @@ function dragElement(elmnt) {
         document.onmouseup = null;
         document.onmousemove = null;
         elmnt.style.opacity = '1';
-        if (readyToDrop) {
+        if (readyToDrop && droppableBelow !== document.body && droppableBelow !== null) {
             // nest folder in folder below
             // console.log(droppableBelow.id.slice(droppableBelow.id.length - 1))
             dropIn(elmnt, droppableBelow.id.slice(droppableBelow.id.length - 1))
             leaveDroppable(droppableBelow)
+        }
+
+        if (readyToDrop && droppableBelow === document.body) {
+            dropOut(elmnt)
         }
     }
 }
@@ -100,6 +130,13 @@ function dropIn(topFolder, bottomFolderNumber) {
     document.getElementById(innerFolder).appendChild(topFolder);
     topFolder.style.position = '';
     topFolder.style.margin = '10px';
+    topFolder.style.height = '100px';
+}
+
+function dropOut(topFolder) {
+    document.body.appendChild(topFolder)
+    topFolder.style.left = xIntersection;
+    topFolder.style.top = yIntersection;
 }
 
 var input = document.querySelector('input'); // get the input element
