@@ -1,3 +1,5 @@
+// https://console.developers.google.com
+
 // Client ID and API key from the Developer Console
 var CLIENT_ID = '696167083372-mi0q7f2538vicik20ho4pr24e2a5q67r.apps.googleusercontent.com';
 var API_KEY = 'AIzaSyApC7ZXZTCOsKfJT8-7oOd2uapf4gOCyqQ';
@@ -11,6 +13,8 @@ var SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly';
 
 var authorizeButton = document.getElementById('authorize_button');
 var signoutButton = document.getElementById('signout_button');
+
+var files = null;
 
 /**
  *  On load, called to load the auth2 library and API client library.
@@ -92,12 +96,13 @@ function listFiles() {
         'fields': "nextPageToken, files(kind, id, name, webViewLink, iconLink)"
     }).then(function (response) {
         // appendPre('Files:');
-        var files = response.result.files;
+        files = response.result.files;
         if (files && files.length > 0) {
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
                 // appendPre(file.name + ' (' + file.webViewLink + ')');
                 console.log(file)
+                newFile(file);
             }
         } else {
             appendPre('No files found.');
