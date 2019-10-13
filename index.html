@@ -10,6 +10,15 @@
 </head>
 
 <body>
+
+    <!-- <p>Drive API My Desktop</p> -->
+    
+    <!--Add buttons to initiate auth sequence and sign out-->
+    <button id="authorize_button" class="auth_buttons" style="display: none;">Authorize</button>
+    <button id="signout_button" class="auth_buttons" style="display: none;">Sign Out</button>
+    
+    <pre id="content" style="white-space: pre-wrap;"></pre>
+
     <div id="folder" class="droppable">
         <div id="folder-itself">
             <img class="image" src="http://icon-park.com/imagefiles/folder_icon_yellow.png" style="max-width: 100%">
@@ -41,6 +50,10 @@
         <hr />
     </div>
 
+    <script src="src/driveAPI.js"></script>
+     <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
+        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+        </script>
     <script src="src/folder.js"></script>
     <!-- <script src="src/folder_copy.js"></script> -->
     <script src="src/folderModal.js"></script>
