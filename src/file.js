@@ -2,7 +2,7 @@
 
 function newFile(file) {
     var newFile = document.createElement("div");
-    newFile.id = "name"
+    // newFile.id = "name"
     newFile.innerHTML = `<div id="name-itself" style="width: 100px;">
                             <img class="image" src="assets/images/blue_file_icon.png" style="max-width: 100%">
                         </div>
