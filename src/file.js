@@ -3,7 +3,7 @@
 fileNum = 0;
 
 function newFile(name, link) {
-    console.log(event.clientY)
+    let top = event.clientY - 50;
     var newFile = document.createElement("div");
     newFile.id = `file-${fileNum}`
     newFile.innerHTML = `<div id="${newFile.id}-itself" style="width: 100px;" ondblclick="linkToDrive('${link}')">
@@ -15,7 +15,7 @@ function newFile(name, link) {
                          </div>`
     newFile.style = `width: 100px;
                      position: absolute;
-                     top: ${event.clientY}px;
+                     top: ${top}px;
                      left: 270px;
                      flex-direction: column;
                      text-align: center;`
