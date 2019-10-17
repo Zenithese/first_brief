@@ -3,6 +3,7 @@
 fileNum = 0;
 
 function newFile(name, link) {
+    console.log(event.clientY)
     var newFile = document.createElement("div");
     newFile.id = `file-${fileNum}`
     newFile.innerHTML = `<div id="${newFile.id}-itself" style="width: 100px;" ondblclick="linkToDrive('${link}')">
@@ -13,8 +14,11 @@ function newFile(name, link) {
                                 style="background-color: transparent; border: none; font-size: 12px; color: white; text-shadow: 1px 1px black;">
                          </div>`
     newFile.style = `width: 100px;
-                        flex-direction: column;
-                        text-align: center;`
+                     position: absolute;
+                     top: ${event.clientY}px;
+                     left: 270px;
+                     flex-direction: column;
+                     text-align: center;`
     // newFile.ondblclick = linkToDrive(link);
     document.body.appendChild(newFile);
     dragElement(newFile);
