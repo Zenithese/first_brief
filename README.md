@@ -1,2 +1,3 @@
-# js_template
 # first_brief
+
+live: Jbauce.com/first_brief
