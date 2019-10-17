@@ -1,15 +1,15 @@
 // blue_file_icon link: http://www.pngall.com/wp-content/uploads/2018/05/Files-High-Quality-PNG.png
 
-inputNum = 0;
+fileNum = 0;
 
 function newFile(name, link) {
     var newFile = document.createElement("div");
-    // newFile.id = "name"
-    newFile.innerHTML = `<div id="name-itself" style="width: 100px;" ondblclick="linkToDrive('${link}')">
+    newFile.id = `file-${fileNum}`
+    newFile.innerHTML = `<div id="${newFile.id}-itself" style="width: 100px;" ondblclick="linkToDrive('${link}')">
                             <img class="image" src="assets/images/blue_file_icon.png" style="max-width: 100%">
                          </div>
                          <div>
-                            <input id="input-${inputNum}" type="text" value=${name}
+                            <input id="input-${fileNum}" type="text" value=${name}
                                 style="background-color: transparent; border: none; font-size: 12px; color: white; text-shadow: 1px 1px black;">
                          </div>`
     newFile.style = `width: 100px;
@@ -18,10 +18,10 @@ function newFile(name, link) {
     // newFile.ondblclick = linkToDrive(link);
     document.body.appendChild(newFile);
     dragElement(newFile);
-    var input = document.getElementById(`input-${inputNum}`);
+    var input = document.getElementById(`input-${fileNum}`);
     input.addEventListener('input', resizeInput);
     resizeInput.call(input);
-    inputNum++
+    fileNum++
 }
 
 function linkToDrive(link) {
