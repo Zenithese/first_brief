@@ -118,17 +118,6 @@ function listFiles() {
 }
 
 function renameDriveFile(fileId) {
-    // console.log(gApi)
-    // if (gApi) {
-    //     gApi.client.drive.files.update({
-    //         'fileId': fileId,
-    //     }).then(function (response) {
-    //         console.log(response.result.name)
-    //     })
-    // }
-
-    // HTTP / 1.1
-
     fetch(`https://www.googleapis.com/drive/v3/files/${fileId}?key=${API_KEY}`, {
         headers: {
             'Authorization': `Bearer ${accessToken}`,
@@ -138,17 +127,4 @@ function renameDriveFile(fileId) {
         body: JSON.stringify({'name': 'Changed!!!'}),
         method: 'PATCH'
     })
-
-    
-    // let url = `https://www.googleapis.com/drive/v3/files/${fileId}?key=${API_KEY}`;
-    // let options = {
-    //     headers: {
-    //         Authorization: "Bearer ya29.ImCpB9cTaxfaU2KeoEYt7t2uaRQiP3GnCm5jZ_uDnu0u_IPzbePp_RsPy56FBuGB--RScRMcFnKbyYm-I2O0aCOyKZNNaomf3sK2-d-_2ZAa7X-6mhZ2zEaMNC5wdEYecTQ",
-    //         Accept: "application/json",
-    //     }
-    //     // body: {'name': 'Changed!'},
-    //     // method: 'PATCH'
-    // }
-
-    // fetch(url, options).then( res => res.json() ).then(response => console.log(response.name))
 }
