@@ -98,7 +98,7 @@ function listFiles() {
     gApi = gapi;
     gapi.client.drive.files.list({
         'pageSize': 95,
-        'fields': "nextPageToken, files(kind, id, name, webViewLink, iconLink)"
+        'fields': "nextPageToken, files(kind, id, name, webViewLink, iconLink, mimeType)"
     }).then(function (response) {
         // appendPre('Files:');
         files = response.result.files;
@@ -114,17 +114,17 @@ function listFiles() {
             appendPre('No files found.');
         }
     });
-    renameDriveFile('1J9q81ubZ84w_NZBeE0i23NeSrv1SJ5gy')
+    // renameDriveFile('1J9q81ubZ84w_NZBeE0i23NeSrv1SJ5gy')
 }
 
-function renameDriveFile(fileId) {
+function renameDriveFile(fileId, name) {
     fetch(`https://www.googleapis.com/drive/v3/files/${fileId}?key=${API_KEY}`, {
         headers: {
             'Authorization': `Bearer ${accessToken}`,
             // 'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({'name': 'Changed!!!'}),
+        body: JSON.stringify({'name': `${name}`}),
         method: 'PATCH'
     })
 }

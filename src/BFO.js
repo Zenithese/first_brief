@@ -1,3 +1,7 @@
 BFO = {
 
 };
+
+function savePositions(BFO){
+    
+}

@@ -3,7 +3,7 @@
 
 fileNum = 0;
 
-function newFile(name, link) {
+function newFile(name, link, fileId) {
     let top = event.clientY - 50;
     var newFile = document.createElement("div");
     newFile.id = `file-${fileNum}`
@@ -11,7 +11,7 @@ function newFile(name, link) {
                             <img class="image" src="assets/images/blue_file_icon.png" style="max-width: 100%">
                          </div>
                          <div>
-                            <input id="input-${fileNum}" type="text" value=${name}
+                            <input id="input-${fileNum}" type="text" value=${name} onchange="renameDriveFile('${fileId}', document.getElementById('input-${fileNum}').value)"
                                 style="background-color: transparent; border: none; font-size: 12px; color: white; text-shadow: 1px 1px black;">
                          </div>`
     newFile.style = `width: 100px;
