@@ -28,6 +28,7 @@ function handleClientLoad() {
  *  Initializes the API client library and sets up sign-in state
  *  listeners.
  */
+let accessToken = null;
 function initClient() {
     gapi.client.init({
         apiKey: API_KEY,
@@ -36,7 +37,7 @@ function initClient() {
         scope: SCOPES
     }).then(function () {
         // Listen for sign-in state changes.
-        // console.log(gapi.auth2.getAuthInstance())
+        accessToken = (gapi.auth2.getAuthInstance().currentUser.Ab.Zi.access_token)
         gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 
         // Handle the initial sign-in state.
@@ -117,6 +118,7 @@ function listFiles() {
 }
 
 function renameDriveFile(fileId) {
+    // console.log(gApi)
     // if (gApi) {
     //     gApi.client.drive.files.update({
     //         'fileId': fileId,
@@ -129,11 +131,11 @@ function renameDriveFile(fileId) {
 
     fetch(`https://www.googleapis.com/drive/v3/files/${fileId}?key=${API_KEY}`, {
         headers: {
-            'Authorization': "Bearer ya29.ImCpB9cTaxfaU2KeoEYt7t2uaRQiP3GnCm5jZ_uDnu0u_IPzbePp_RsPy56FBuGB--RScRMcFnKbyYm-I2O0aCOyKZNNaomf3sK2-d-_2ZAa7X-6mhZ2zEaMNC5wdEYecTQ",
+            'Authorization': `Bearer ${accessToken}`,
             // 'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({'name': 'Changed!!'}),
+        body: JSON.stringify({'name': 'Changed!!!'}),
         method: 'PATCH'
     })
 
