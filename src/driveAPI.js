@@ -79,42 +79,25 @@ function handleSignoutClick(event) {
 }
 
 /**
- * Append a pre element to the body containing the given message
- * as its text node. Used to display the results of the API call.
- *
- * @param {string} message Text to be placed in pre element.
- */
-function appendPre(message) {
-    var pre = document.getElementById('content');
-    var textContent = document.createTextNode(message + '\n');
-    pre.appendChild(textContent);
-}
-
-/**
  * Print files.
  */
 let gApi = null;
 function listFiles() {
     gApi = gapi;
     gapi.client.drive.files.list({
-        'pageSize': 95,
-        'fields': "nextPageToken, files(kind, id, name, webViewLink, iconLink, mimeType)"
+        'pageSize': 5,
+        'fields': "nextPageToken, files(kind, id, name, webViewLink, iconLink, mimeType, description)"
     }).then(function (response) {
-        // appendPre('Files:');
         files = response.result.files;
         if (files && files.length > 0) {
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
-                // appendPre(file.name + ' (' + file.webViewLink + ')');
-                // console.log(file)
-                // newFile(file);
                 fillNav(file)
             }
         } else {
             appendPre('No files found.');
         }
     });
-    // renameDriveFile('1J9q81ubZ84w_NZBeE0i23NeSrv1SJ5gy')
 }
 
 function renameDriveFile(fileId, name) {

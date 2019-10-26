@@ -1,7 +1,3 @@
 BFO = {
-
+    'hi': 'planet'
 };
-
-function savePositions(BFO){
-    
-}

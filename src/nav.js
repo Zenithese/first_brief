@@ -11,7 +11,7 @@ function closeNav() {
 var driveFileNum = 1;
 
 function fillNav(file) {
-    console.log(file.mimeType)
+    // console.log(file.description)
     let item = document.createElement("a");
     item.innerHTML = `<a href=${file.webViewLink} target="_blank" style="overflow: hidden;">${file.name}</a> <button id="driveFile-${driveFileNum}" onclick="newFile('${file.name}', '${file.webViewLink}', '${file.id}')">&#x21e8;</button>`
     // item.href = file.webViewLink
