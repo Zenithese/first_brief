@@ -93,6 +93,7 @@ function listFiles() {
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
                 fillNav(file)
+                fillFirstFile(file.name, file.webViewLink, file.id);
             }
         } else {
             appendPre('No files found.');
