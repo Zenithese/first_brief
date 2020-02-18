@@ -125,7 +125,7 @@ function dragElement(elmnt) {
         }
 
         appended = false;
-        if (elmntBelow.className === "modal-body" && elmntBelow !== null) { /**/
+        if (elmntBelow && elmntBelow.className === "modal-body" && elmntBelow !== null) { /**/
             elmntBelow.appendChild(elmnt);
         }
     }

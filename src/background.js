@@ -15,5 +15,5 @@ function changeBackground(url) {
 }
 
 function wallpaperInput() {
-    wallpaper.style = `display: block`
+    wallpaper.style = `display: inline-block`
 }
