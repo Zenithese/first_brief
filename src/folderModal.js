@@ -1,3 +1,4 @@
+var modalStack = [];
 
 function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", close = "close", num = "0") {
     var newFolderContent = document.createElement("div");
@@ -33,22 +34,26 @@ function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", 
     var span = document.getElementById(close);
 
     var modals = document.getElementsByClassName("modal")
-
+    
     // When the user clicks the button, open the modal 
     btn.ondblclick = function () {
         modal.style.display = "block";
+        modalStack.push(modal)
+        for (let i = 0; i < modalStack.length; i++) {
+            modalStack[i].style.zIndex = `${String(i + 2)}`
+        }
+        console.log(modalStack)
     }
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function () {
+        modal.style.zIndex = "2"
         modal.style.display = "none";
+        modalStack.pop(modal)
     }
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
-        // if (event.target == modal) {
-        //     modal.style.display = "none";
-        // }
         let close = false;
         for (let i = 0; i < modals.length; i++) {
             if (event.target == modals[i]) {
@@ -60,6 +65,7 @@ function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", 
             for (let j = 0; j < modals.length; j++) {
                 modals[j].style.display = "none";
             }
+            modalStack = [];
         }
     }
 
