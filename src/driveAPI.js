@@ -28,7 +28,7 @@ function handleClientLoad() {
  *  Initializes the API client library and sets up sign-in state
  *  listeners.
  */
-// let accessToken = null;
+let accessToken = null;
 function initClient() {
     gapi.client.init({
         apiKey: API_KEY,
@@ -38,7 +38,9 @@ function initClient() {
     }).then(function () {
         // Listen for sign-in state changes.
         // accessToken = (gapi.auth2.getAuthInstance().currentUser.Ab.Zi.access_token)
-        // console.log(gapi.auth2.getAuthInstance())
+        let key = Object.keys(gapi.auth2.getAuthInstance().currentUser)[0]
+        let key2 = Object.keys(gapi.auth2.getAuthInstance().currentUser[key])[1]
+        accessToken = gapi.auth2.getAuthInstance().currentUser[key][key2].access_token
         gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 
         // Handle the initial sign-in state.
