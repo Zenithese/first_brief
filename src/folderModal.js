@@ -1,18 +1,22 @@
 var modalStack = [];
+var mod = document.getElementById("myModal")
 
 function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", close = "close", num = "0") {
     var newFolderContent = document.createElement("div");
+
+    // for stack
     document.body.appendChild(newFolderContent);
     newFolderContent.innerHTML =   `<div id=${modal} class="modal">
                                         <div id="modal-content${num}" class="modal-content">
-                                            <div id="modal-header${num}" class="modal-header">
-                                                <span id=${close} class="close">&times;</span>
-                                                <h2 id=${String(num)}>${value}</h2>
+                                            <div id="modal-content${num}handle" class="modal-header">
+                                                <div id="modal-header${num}" class="modal-header">
+                                                    <button class="newNestedFolderBtn" onclick="newNestedFolder(document.getElementById('innerFolder-${num}'))">New Folder</button>
+                                                    <span id=${close} class="close">&times;</span>
+                                                    <h2 id=${String(num)}>${value}</h2>
+                                                </div>
                                             </div>
                                             
-                                            <div id="innerFolder-${num}" class="modal-body">
-                                                <button class="newNestedFolderBtn" onclick="newNestedFolder(document.getElementById('innerFolder-${num}'))">New Folder</button>
-                                            </div>
+                                            <div id="innerFolder-${num}" class="modal-body"></div>
                                             <div id="portal${num}" class="portal"></div>
                                         </div>
                                         <div class="modal-footer">
@@ -23,6 +27,30 @@ function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", 
                                                 </h3>
                                             </div>
                                     </div>`
+
+    // for separate windows
+    // mod.appendChild(newFolderContent);
+    // newFolderContent.innerHTML =   `<div id=${modal}>
+    //                                     <div id="modal-content${num}" class="modal-content">
+    //                                         <div id="modal-content${num}handle" class="modal-header">
+    //                                             <div id="modal-header${num}" class="modal-header">
+    //                                                 <button class="newNestedFolderBtn" onclick="newNestedFolder(document.getElementById('innerFolder-${num}'))">New Folder</button>
+    //                                                 <span id=${close} class="close">&times;</span>
+    //                                                 <h2 id=${String(num)}>${value}</h2>
+    //                                             </div>
+    //                                         </div>
+                                            
+    //                                         <div id="innerFolder-${num}" class="modal-body"></div>
+    //                                         <div id="portal${num}" class="portal"></div>
+    //                                     </div>
+    //                                     <div class="modal-footer">
+    //                                             <h3>
+    //                                                 <a href="https://angel.co/justin-andersen-1" class="fab fa-angellist" style="text-decoration: none; color: white;"></a>
+    //                                                 <a href="https://github.com/Zenithese" class="fab fa-github" style="text-decoration: none; color: white;"></a>
+    //                                                 <a href="https://www.linkedin.com/in/justin-andersen-54750b75/" class="fab fa-linkedin-in" style="text-decoration: none; color: white;"></a>
+    //                                             </h3>
+    //                                         </div>
+    //                                 </div>`
 
     // Get the modal
     var modal = document.getElementById(modal);
@@ -42,7 +70,6 @@ function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", 
         for (let i = 0; i < modalStack.length; i++) {
             modalStack[i].style.zIndex = `${String(i + 2)}`
         }
-        console.log(modalStack)
     }
 
     // When the user clicks on <span> (x), close the modal
@@ -69,48 +96,15 @@ function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", 
         }
     }
 
+    dragElement(document.getElementById(`modal-content${num}`))
+
 }
 
-// function newNestedFolder(innerFolder) {
-//     newFolderClose = "close" + String(newFolderNum)
-//     newFolderModal = "modal" + String(newFolderNum)
-//     newFolderName = "folder" + String(newFolderNum)
-//     newFolderNameItself = newFolderName + "-itself"
-//     folderNameInput = "input" + String(newFolderNum)
-//     var newNestedFolder = document.createElement("div");
-//     innerFolder.appendChild(newNestedFolder);
-//     newNestedFolder.innerHTML = `<style>
-//                                     #${newFolderName}:hover {z-index: 1}
-//                                  </style>
-//                                  <div id=${newFolderNameItself} style="width: 100px;">
-//                                     <img class="image" src="http://icon-park.com/imagefiles/folder_icon_yellow.png" style="max-width: 100%">
-//                                  </div>
-//                                  <div id="folder-name">
-//                                     <input id=${folderNameInput} type="text" name=${newFolderModal} value="New Folder ${newFolderNum}" onchange="renameFolder(document.getElementById('${folderNameInput}'))" title=${newFolderNum}
-//                                         style="background-color: transparent; border: none; font-size: 12px; color: white; text-shadow: 1px 1px black;">
-//                                  </div>`
-//     newNestedFolder.id = newFolderName
-//     // newNestedFolder.style = `display: flex;
-//     //                          flex-direction: column;
-//     //                          position: absolute;
-//     //                          text-align: center;`
-    
-//     dragElement(document.getElementById(newFolderName));
-//     var input = document.getElementById(folderNameInput);
-//     input.addEventListener('input', resizeInput);
-//     resizeInput.call(input);
-//     fillFolder(document.getElementById(folderNameInput).value, newFolderName, newFolderModal, newFolderClose, newFolderNum)
-//     newFolderNum += 1;
-// }
-
 function newNestedFolder(innerFolder) {
-    // if (!outerFolder) {
-
-    // }
     newFolderClose = "close" + String(newFolderNum)
     newFolderModal = "modal" + String(newFolderNum)
     newFolderName = "folder" + String(newFolderNum)
-    newFolderNameItself = newFolderName + "-itself"
+    newFolderNameItself = newFolderName + "handle"
     folderNameInput = "input" + String(newFolderNum)
     var newNestedFolder = document.createElement("div");
     innerFolder.appendChild(newNestedFolder);
@@ -192,14 +186,21 @@ function newNestedFolder(innerFolder) {
 
 function restyle(elmnt, top, left) {
     
-    elmnt.style = `width: 100px;
-                   opacity: .8;
+    elmnt.style = `opacity: .8;
                    flex-direction: column;
                    position: absolute;
                    text-align: center;
                    top: ${top};
                    left: ${left};`
                 //    z-index: 10;`
+                // width: 100px;
+
+    if (elmnt.id.slice(0, 13) === 'modal-content') {
+        let topPos = String(Number(top.slice(0, top.length - 2)) + 31) + 'px';
+        document.getElementById('innerFolder-' + elmnt.id.slice(13)).style = 
+        `top: ${topPos};
+        left: ${left};`
+    }
 }
 
 {/* <p>Some things are easier forgotten, and some things have to be remembered, and sometimes those same somethings are the same something...</p> */}

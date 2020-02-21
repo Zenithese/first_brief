@@ -11,7 +11,6 @@ function closeNav() {
 var driveFileNum = 1;
 
 function fillNav(file) {
-    // console.log(file.description)
     let item = document.createElement("a");
     item.innerHTML = `<a href=${file.webViewLink} target="_blank" style="overflow: hidden;">${file.name}</a> <button id="driveFile-${driveFileNum}" onclick="newFile('${file.name}', '${file.webViewLink}', '${file.id}')">&#x21e8;</button>`
     // item.href = file.webViewLink
@@ -25,7 +24,6 @@ function fillNav(file) {
 // var tentativeLeft = 0;
 
 // function driveDragElement(elmnt) {
-//     console.log('!')
 //     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 //     if (document.getElementById(elmnt.id + "-header")) {
 //         /* if present, the header is where you move the DIV from:*/

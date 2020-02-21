@@ -8,9 +8,9 @@ var yIntersection = 0;
 
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    if (document.getElementById(elmnt.id + "-itself")) {
+    if (document.getElementById(elmnt.id + "handle")) {
         /* if present, the header is where you move the DIV from:*/
-        document.getElementById(elmnt.id + "-itself").onmousedown = dragMouseDown;
+        document.getElementById(elmnt.id + "handle").onmousedown = dragMouseDown;
     } else {
         /* otherwise, move the DIV from anywhere inside the DIV:*/
         elmnt.onmousedown = dragMouseDown;
@@ -44,9 +44,16 @@ function dragElement(elmnt) {
         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
         restyle(elmnt, elmnt.style.top, elmnt.style.left)
+        
+        let number = elmnt.id.slice(elmnt.id.length - 1) === "r" ? 0 : elmnt.id.slice(elmnt.id.length - 1);
+        if (BFO[number] === undefined) BFO[number] = {}
+        BFO[number]['top'] = elmnt.style.top
+        BFO[number]['left'] = elmnt.style.left
+        // console.log(BFO)
 
         elmnt.hidden = true;
         elmntBelow = document.elementFromPoint(event.clientX, event.clientY);
+        // console.log(elmntBelow, e.clientX)
         elmnt.hidden = false;
 
         if (!elmntBelow) return;
@@ -58,13 +65,15 @@ function dragElement(elmnt) {
         // if (elmntBelow.className === "modal") {
             droppableBelow = document.body
             let number = elmntBelow.id.slice(elmntBelow.id.length - 1) === "l" ? 0 : elmntBelow.id.slice(elmntBelow.id.length - 1);
-            let modalContent = document.getElementById(`modal-content${number}`)
+            let modalContent = document.getElementById(`modal-content${number}`);
             // let modalHeader = document.getElementById(`modal-header${number}`)
             yIntersection = (modalContent.offsetTop + elmnt.offsetTop + 28 - pos2) + "px"; // 28 is the height of #modal-header
             xIntersection = (modalContent.offsetLeft + elmnt.offsetLeft - pos1) + "px";
 
-            let portal = document.getElementById(`portal${number}`) /**/
+            if (elmnt.id.slice(0, 13) === 'modal-content') return;
+
             if (!appended) {
+                let portal = document.getElementById(`portal${number}`)
                 portal.appendChild(elmnt)
                 appended = true;
             }
@@ -113,16 +122,30 @@ function dragElement(elmnt) {
         document.onmousemove = null;
         elmnt.style.opacity = '1';
 
+        if (elmnt.id.slice(0, 13) === 'modal-content') return;
+
         if (readyToDrop && droppableBelow !== document.body && droppableBelow !== null) {
             // nest folder in folder below
+            // console.log('a')
             dropIn(elmnt, droppableBelow.id.slice(droppableBelow.id.length - 1))
             leaveDroppable(droppableBelow)
         }
 
         if (readyToDrop && droppableBelow === document.body && elmntBelow.className !== "modal-body") { /**/
         // if (readyToDrop && droppableBelow === document.body) {
+            // console.log('b')
             dropOut(elmnt)
         }
+
+        // for separate windows
+        // if (elmntBelow.id.slice(0, 11) === "innerFolder") {
+        //     console.log('c')
+        //     elmntBelow.appendChild(elmnt)
+        //     console.log(event.clientX - Number(elmntBelow.style.top.slice(0, elmntBelow.style.top.length - 2)), event.clientY - Number(elmntBelow.style.left.slice(0, elmntBelow.style.left.length - 2)))
+        //     elmnt.style.top = (event.clientY - Number(elmntBelow.style.top.slice(0, elmntBelow.style.top.length - 2)) - 5) + "px";
+        //     elmnt.style.left = (event.clientX - Number(elmntBelow.style.left.slice(0, elmntBelow.style.left.length - 2)) - 55) + "px";
+        //     leaveDroppable(droppableBelow)
+        // }
 
         appended = false;
         if (elmntBelow && elmntBelow.className === "modal-body" && elmntBelow !== null) { /**/
@@ -217,10 +240,13 @@ function menu(x, y) {
 var DDD = false;
 
 function newFolder(xXx, yYy) {
+    BFO[newFolderNum] = {}
+    BFO[newFolderNum]['top'] = `${yYy}px`
+    BFO[newFolderNum]['left'] = `${xXx}px`
     newFolderClose = "close" + String(newFolderNum)
     newFolderModal = "modal" + String(newFolderNum)
     newFolderName = "folder" + String(newFolderNum)
-    newFolderNameItself = newFolderName + "-itself"
+    newFolderNameItself = newFolderName + "handle"
     folderNameInput = "input" + String(newFolderNum)
     var newFolder = document.createElement("div");
     newFolder.innerHTML =  `<style>

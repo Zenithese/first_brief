@@ -48,7 +48,7 @@ function initClient() {
         authorizeButton.onclick = handleAuthClick;
         signoutButton.onclick = handleSignoutClick;
     }, function (error) {
-        appendPre(JSON.stringify(error, null, 2));
+        alert(JSON.stringify(error, null, 2));
     });
 }
 
@@ -99,7 +99,7 @@ function listFiles() {
                 fillFirstFile(file.name, file.webViewLink, file.id);
             }
         } else {
-            appendPre('No files found.');
+            alert('No files found.');
         }
     });
 }

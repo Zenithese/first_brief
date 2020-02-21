@@ -99,7 +99,7 @@ body {
   text-align: center;
 }
 
-#folder-itself {
+#folderhandle {
     width: 100px;
 }
 
@@ -267,16 +267,14 @@ body {
   text-shadow: 1px 1px 8px black;
   font-weight: 100;
   text-align: center;
-  position: fixed;
-  left: 17.5%;
+  position: absolute;
+  left: 2.5%;
   top: 18.4%;
   z-index: 3;
 }
 
 /* Modal Content */
 .modal-content {
-  /* overflow-y: scroll; */
-  /* opacity: .7; */
   position: fixed;
   left: 14.5%;
   bottom: 22.7%;
@@ -299,6 +297,10 @@ body {
   /* -webkit-text-stroke: 1px black; */
   font-weight: bold;
   z-index: 3;
+}
+
+.modal-content:hover {
+  z-index: 2147483647;
 }
 
 /* The Close Button */

@@ -7,7 +7,7 @@ function newFile(name, link, fileId) {
     let top = event.clientY - 50;
     var newFile = document.createElement("div");
     newFile.id = `file-${fileNum}`
-    newFile.innerHTML = `<div id="${newFile.id}-itself" style="width: 100px;" ondblclick="linkToDrive('${link}')">
+    newFile.innerHTML = `<div id="${newFile.id}handle" style="width: 100px;" ondblclick="linkToDrive('${link}')">
                             <img class="image" src="assets/images/blue_file_icon.png" style="max-width: 100%">
                          </div>
                          <div>
@@ -37,7 +37,7 @@ function fillFirstFile(name, link, fileId) {
     let top = event.clientY - 50;
     var newFile = document.createElement("div");
     newFile.id = `file-${fileNum}`
-    newFile.innerHTML = `<div id="${newFile.id}-itself" style="width: 100px;" ondblclick="linkToDrive('${link}')">
+    newFile.innerHTML = `<div id="${newFile.id}handle" style="width: 100px;" ondblclick="linkToDrive('${link}')">
                             <img class="image" src="assets/images/blue_file_icon.png" style="max-width: 100%">
                          </div>
                          <div>

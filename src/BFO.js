@@ -1,3 +1,3 @@
-BFO = {
-    'hi': 'planet'
+var BFO = {
+    
 };

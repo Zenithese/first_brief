@@ -6,9 +6,9 @@ var yIntersection = 0;
 
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    if (document.getElementById(elmnt.id + "-itself")) {
+    if (document.getElementById(elmnt.id + "handle")) {
         /* if present, the header is where you move the DIV from:*/
-        document.getElementById(elmnt.id + "-itself").onmousedown = dragMouseDown;
+        document.getElementById(elmnt.id + "handle").onmousedown = dragMouseDown;
     } else {
         /* otherwise, move the DIV from anywhere inside the DIV:*/
         elmnt.onmousedown = dragMouseDown;
@@ -212,7 +212,7 @@ function newFolder(xXx, yYy) {
     newFolderClose = "close" + String(newFolderNum)
     newFolderModal = "modal" + String(newFolderNum)
     newFolderName = "folder" + String(newFolderNum)
-    newFolderNameItself = newFolderName + "-itself"
+    newFolderNameItself = newFolderName + "handle"
     folderNameInput = "input" + String(newFolderNum)
     var newFolder = document.createElement("div");
     newFolder.innerHTML =  `<style>
