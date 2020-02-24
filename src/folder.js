@@ -45,12 +45,19 @@ function dragElement(elmnt) {
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
         restyle(elmnt, elmnt.style.top, elmnt.style.left)
         
-        let number = elmnt.id.slice(elmnt.id.length - 1) === "r" ? 0 : elmnt.id.slice(elmnt.id.length - 1);
-        if (BFO[number] === undefined) BFO[number] = {}
-        BFO[number]['top'] = elmnt.style.top
-        BFO[number]['left'] = elmnt.style.left
-        // console.log(BFO)
-
+        let key, key2
+        if (elmnt.id[1] === 'o') {
+            key = 'folders';
+            key2 = elmnt.id.slice(elmnt.id.length - 1) === "r" ? 0 : elmnt.id.slice(6);
+        } else {
+            key = 'files';
+            key2 = elmnt.dataset.id;
+        }
+        if (BFO[key][key2] === undefined) BFO[key][key2] = {}
+        BFO[key][key2]['top'] = elmnt.style.top
+        BFO[key][key2]['left'] = elmnt.style.left
+        console.log(BFO)
+        
         elmnt.hidden = true;
         elmntBelow = document.elementFromPoint(event.clientX, event.clientY);
         // console.log(elmntBelow, e.clientX)
@@ -186,7 +193,7 @@ function renameFolder(name) {
 
 let xXx = 0;
 let yYy = 0;
-newFolderNum = 1;
+let newFolderNum = 0;
 
 let i = document.getElementById("menu").style;
 let folderBtn = document.getElementById("newFolderBtn");
@@ -240,9 +247,9 @@ function menu(x, y) {
 var DDD = false;
 
 function newFolder(xXx, yYy) {
-    BFO[newFolderNum] = {}
-    BFO[newFolderNum]['top'] = `${yYy}px`
-    BFO[newFolderNum]['left'] = `${xXx}px`
+    BFO['folders'][newFolderNum] = {}
+    BFO['folders'][newFolderNum]['top'] = `${yYy}px`
+    BFO['folders'][newFolderNum]['left'] = `${xXx}px`
     newFolderClose = "close" + String(newFolderNum)
     newFolderModal = "modal" + String(newFolderNum)
     newFolderName = "folder" + String(newFolderNum)
@@ -285,6 +292,8 @@ function newFolder(xXx, yYy) {
     deleteFolderBtn.addEventListener('click', function (e) {
         if (folderToDelete !== null) {
             folderToDelete.remove();
+            delete BFO['folders'][folderToDelete.id.slice(6)]
+            folderToDelete = null
         }
     });
 

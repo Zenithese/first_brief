@@ -10,7 +10,7 @@ var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/res
 // Authorization scopes required by the API; multiple scopes can be
 // included, separated by spaces.
 // var SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly';
-var SCOPES = 'https://www.googleapis.com/auth/drive';
+var SCOPES = "https://www.googleapis.com/auth/drive  https://www.googleapis.com/auth/drive.appdata";
 
 var authorizeButton = document.getElementById('authorize_button');
 var signoutButton = document.getElementById('signout_button');
@@ -29,7 +29,9 @@ function handleClientLoad() {
  *  listeners.
  */
 let accessToken = null;
+let gAPI = null;
 function initClient() {
+    gAPI = gapi;
     gapi.client.init({
         apiKey: API_KEY,
         clientId: CLIENT_ID,
@@ -42,6 +44,9 @@ function initClient() {
         let key2 = Object.keys(gapi.auth2.getAuthInstance().currentUser[key])[1]
         accessToken = gapi.auth2.getAuthInstance().currentUser[key][key2].access_token
         gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+        // createPositionsFile(); // 1T1Wa59qS3K71WL7k783vaXkUwnzmfif6VmQWxNTdhRVjcBjFgg 1gZ7Xkv1zKe_-_oi06vubk8og3a5ZC0ts 1EZzPnB-Ab83yhXA9CSOGtQns9gDB72ep 1htIjspmYsXQVIac56GGXHu_fe86zYC34
+        fileExists("changed")
 
         // Handle the initial sign-in state.
         updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
@@ -60,7 +65,6 @@ function updateSigninStatus(isSignedIn) {
     if (isSignedIn) {
         authorizeButton.style.display = 'none';
         signoutButton.style.display = 'block';
-        listFiles();
     } else {
         authorizeButton.style.display = 'block';
         signoutButton.style.display = 'none';
@@ -84,9 +88,10 @@ function handleSignoutClick(event) {
 /**
  * Print files.
  */
-let gApi = null;
+
 function listFiles() {
-    gApi = gapi;
+    // findAppDataFile(gapi);
+
     gapi.client.drive.files.list({
         'pageSize': 5,
         'fields': "nextPageToken, files(kind, id, name, webViewLink, iconLink, mimeType, description)"
@@ -95,8 +100,12 @@ function listFiles() {
         if (files && files.length > 0) {
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
+                console.log(i, file)
                 fillNav(file)
-                fillFirstFile(file.name, file.webViewLink, file.id);
+                // fillFirstFile(file.name, file.webViewLink, file.id);
+                if (file.id in BFO['files']) {
+                    newFile(file.name, file.webViewLink, file.id, BFO['files'][file.id]['top'], BFO['files'][file.id]['left'])
+                }
             }
         } else {
             alert('No files found.');

@@ -1,8 +1,6 @@
-//delete functionality for automatic folder
-
 function firstFolder() {
     
-    let keys = Object.keys(BFO)
+    let keys = Object.keys(BFO['folders'])
     if (keys.length) {
         for (let i = 0; i < keys.length; i++) {
             let folderNum = keys[i]
@@ -24,12 +22,13 @@ function firstFolder() {
                                 </div>`
             folder.id = folderName
             folder.className = "droppable"
+            console.log(folderNum)
             folder.style = `width: 100px;
                         flex-direction: column;
                         position: absolute;
                         text-align: center;
-                        top: ${BFO[folderNum]['top']};
-                        left: ${BFO[folderNum]['left']};`
+                        top: ${BFO['folders'][folderNum]['top']};
+                        left: ${BFO['folders'][folderNum]['left']};`
             // folder.addEventListener()
             document.body.appendChild(folder);
 
@@ -38,7 +37,7 @@ function firstFolder() {
             input.addEventListener('input', resizeInput);
             resizeInput.call(input);
             fillFolder(document.getElementById(folderNameInput).value, folderName, folderModal, folderClose, folderNum)
-            folderNum += 1;
+            newFolderNum += 1;
 
             //delete folder
             let x = document.getElementById("deleteDD").style;
@@ -48,6 +47,8 @@ function firstFolder() {
             deleteFolderBtn.addEventListener('click', function (e) {
                 if (folderToDelete !== null) {
                     folderToDelete.remove();
+                    delete BFO['folders'][folderToDelete.id.slice(6)]
+                    folderToDelete = null
                 }
             });
 
@@ -91,6 +92,7 @@ function firstFolder() {
             }
         }
     } else {
+        newFolderNum += 1;
         let firstFolder = document.createElement("div");
         firstFolder.id = "folder"
         firstFolder.innerHTML = `<style>
@@ -114,6 +116,8 @@ function firstFolder() {
         deleteFolderBtn.addEventListener('click', function (e) {
             if (folderToDelete !== null) {
                 folderToDelete.remove();
+                delete BFO['folders'][folderToDelete.id.slice(6)]
+                folderToDelete = null
             }
         });
 
@@ -156,6 +160,7 @@ function firstFolder() {
             x.opacity = "1";
         }
     }
+    listFiles();
 }
 
-firstFolder(); fillFolder(); dragElement(document.getElementById("folder"));
+// firstFolder(); fillFolder(); dragElement(document.getElementById("folder"));

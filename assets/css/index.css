@@ -88,6 +88,10 @@ body {
   float: right;
 }
 
+.save_button {
+  float: right;
+}
+
 #folder {
   width: 100px;
   /* height: 120px; */

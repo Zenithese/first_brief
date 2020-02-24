@@ -22,6 +22,7 @@
     <!--Add buttons to initiate auth sequence and sign out-->
     <button id="authorize_button" class="auth_buttons" style="display: none;">Authorize</button>
     <button id="signout_button" class="auth_buttons" style="display: none;">Sign Out</button>
+    <button id="save_button" class="save_button" onclick="updatePositionsFile()">Save</button>
     
     <pre id="content" style="white-space: pre-wrap;"></pre>
 
@@ -51,19 +52,22 @@
         <hr />
     </div>
 
+    <script src="src/BFO.js"></script>
+    <script src="src/uploadData.js"></script>
     <script src="src/driveAPI.js"></script>
      <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
         onreadystatechange="if (this.readyState === 'complete') this.onload()">
         </script>
+    <!-- <script src="bundle.js"></script> -->
     <script src="src/file.js"></script>
     <script src="src/folder.js"></script>
     <script src="src/folderModal.js"></script>
     <script src="src/nav.js"></script>
-    <script src="src/BFO.js"></script>
     <script src="src/background.js"></script>
     <script src="src/first_folder.js"></script>
     <!-- <script src="src/require.js"></script> -->
     <!-- <script data-main="src/app.js" src="src/uploadData.js"></script> -->
+    <!-- <script type="module" src="src/uploadData.js"></script> -->
     <script src="./dist/main.js"></script>
     
 </body>
