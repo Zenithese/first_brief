@@ -29,35 +29,3 @@ var BFO = {
         },
     }
 };
-// var BFO = {
-//     'folders': {
-//         0: {
-//             'top': '300px',
-//             'left': '570px',
-//             'children': {
-//                 1: {
-//                     'children': {
-//                         2: {
-//                             'children': undefined
-//                         }
-//                     }
-//                 }
-//             }
-//         },
-//     },
-//     'files': {
-//         "14ORiDonb8Tt2JLDmcL56VjHaK5j2xqlQ": {
-//             'top': '100px',
-//             'left': '200px',
-//             'parent': 'innerFolder-0'
-//         },
-//     },
-//     'removables': {
-//         1: {
-//             'parent': 'innerFolder-0'
-//         },
-//         2: {
-//             'parent': 'innerFolder-1'
-//         }
-//     }
-// };

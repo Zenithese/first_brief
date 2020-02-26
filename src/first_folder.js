@@ -179,14 +179,15 @@ function sortParents(array) {
 
     while (array.length) {
         let temp = new Array
+        let revisedArray = new Array
 
         for (let i = 0; i < array.length; i++) {
 
             if (parentObject[array[i][1]['parent']]) {
                 sorted.push(array[i][0])
                 temp.push(array[i][0])
-                array.splice(i, 1)
-                i--
+            } else {
+                revisedArray.push(array[i])
             }
 
         }
@@ -194,6 +195,8 @@ function sortParents(array) {
         for (let i = 0; i < temp.length; i++) {
             parentObject[temp[i]] = true
         }
+
+        array = revisedArray.slice()
     }
 
     return sorted
