@@ -40,19 +40,20 @@ function initClient() {
     }).then(function () {
         // Listen for sign-in state changes.
         // accessToken = (gapi.auth2.getAuthInstance().currentUser.Ab.Zi.access_token)
-        let key = Object.keys(gapi.auth2.getAuthInstance().currentUser)[0]
-        let key2 = Object.keys(gapi.auth2.getAuthInstance().currentUser[key])[1]
-        console.log(gapi.auth2.getAuthInstance().currentUser)
-        accessToken = gapi.auth2.getAuthInstance().currentUser[key][key2].access_token
         gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 
         // createPositionsFile(); // 1T1Wa59qS3K71WL7k783vaXkUwnzmfif6VmQWxNTdhRVjcBjFgg 1gZ7Xkv1zKe_-_oi06vubk8og3a5ZC0ts 1EZzPnB-Ab83yhXA9CSOGtQns9gDB72ep 1htIjspmYsXQVIac56GGXHu_fe86zYC34
-        fileExists("changed")
 
         // Handle the initial sign-in state.
         updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
         authorizeButton.onclick = handleAuthClick;
         signoutButton.onclick = handleSignoutClick;
+
+        // get access_token
+        // let key = Object.keys(gapi.auth2.getAuthInstance().currentUser)[0]
+        // let key2 = Object.keys(gapi.auth2.getAuthInstance().currentUser[key])[1]
+        // accessToken = gapi.auth2.getAuthInstance().currentUser[key][key2].access_token
+        // fileExists("changed")
     }, function (error) {
         alert(JSON.stringify(error, null, 2));
     });
@@ -66,6 +67,11 @@ function updateSigninStatus(isSignedIn) {
     if (isSignedIn) {
         authorizeButton.style.display = 'none';
         signoutButton.style.display = 'block';
+        // get access_token
+        let key = Object.keys(gAPI.auth2.getAuthInstance().currentUser)[0]
+        let key2 = Object.keys(gAPI.auth2.getAuthInstance().currentUser[key])[1]
+        accessToken = gAPI.auth2.getAuthInstance().currentUser[key][key2].access_token
+        fileExists("changed")
     } else {
         authorizeButton.style.display = 'block';
         signoutButton.style.display = 'none';
@@ -77,6 +83,11 @@ function updateSigninStatus(isSignedIn) {
  */
 function handleAuthClick(event) {
     gapi.auth2.getAuthInstance().signIn();
+    // get access_token
+    let key = Object.keys(gAPI.auth2.getAuthInstance().currentUser)[0]
+    let key2 = Object.keys(gAPI.auth2.getAuthInstance().currentUser[key])[1]
+    accessToken = gAPI.auth2.getAuthInstance().currentUser[key][key2].access_token
+    fileExists("changed")
 }
 
 /**
@@ -84,6 +95,7 @@ function handleAuthClick(event) {
  */
 function handleSignoutClick(event) {
     gapi.auth2.getAuthInstance().signOut();
+    location.reload();
 }
 
 /**
