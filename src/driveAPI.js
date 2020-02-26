@@ -42,6 +42,7 @@ function initClient() {
         // accessToken = (gapi.auth2.getAuthInstance().currentUser.Ab.Zi.access_token)
         let key = Object.keys(gapi.auth2.getAuthInstance().currentUser)[0]
         let key2 = Object.keys(gapi.auth2.getAuthInstance().currentUser[key])[1]
+        console.log(gapi.auth2.getAuthInstance().currentUser)
         accessToken = gapi.auth2.getAuthInstance().currentUser[key][key2].access_token
         gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 
