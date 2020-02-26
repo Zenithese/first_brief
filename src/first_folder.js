@@ -103,11 +103,7 @@ function firstFolder() {
         }
     } else {
         // pop-up modal to explain how to use the application
-        let welcomeModal = document.getElementById("welcome-modal")
-        welcomeModal.style.display = "block"
-        window.onclick = function (event) {
-            welcomeModal.style.display = "none"
-        }
+        greeting();
     }
     listFiles();
 }
@@ -140,6 +136,14 @@ function sortParents(array) {
     }
 
     return sorted
+}
+
+function greeting() {
+    let welcomeModal = document.getElementById("welcome-modal")
+    welcomeModal.style.display = "block"
+    window.onclick = function (event) {
+        welcomeModal.style.display = "none"
+    }
 }
 
 // firstFolder(); fillFolder(); dragElement(document.getElementById("folder"));

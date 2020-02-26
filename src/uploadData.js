@@ -37,6 +37,7 @@ function createPositionsFile() {
         console.log(xhr.response.id); // Retrieve uploaded file ID.
     };
     xhr.send(form);
+    greeting();
 }
 
 function findAppDataFile () {
