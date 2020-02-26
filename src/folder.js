@@ -260,7 +260,7 @@ function newFolder(xXx, yYy) {
     BFO['folders'][newFolderNum] = {}
     BFO['folders'][newFolderNum]['top'] = `${yYy}px`
     BFO['folders'][newFolderNum]['left'] = `${xXx}px`
-    BFO['folders'][newFolderNum]['parent'] = elmntBelow
+    BFO['folders'][newFolderNum]['parent'] = null
     console.log(BFO)
     newFolderClose = "close" + String(newFolderNum)
     newFolderModal = "modal" + String(newFolderNum)

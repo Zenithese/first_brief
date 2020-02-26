@@ -22,13 +22,20 @@ function newFile(name, link, id, top, left, parent) {
                      flex-direction: column;
                      text-align: center;`
     // newFile.ondblclick = linkToDrive(link);
-    parent === null ? document.body.appendChild(newFile) : document.getElementById(`innerFolder-${parent}`).appendChild(newFile)
+    parent === null || parent === undefined ? document.body.appendChild(newFile) : document.getElementById(`innerFolder-${parent}`).appendChild(newFile)
     // document.body.appendChild(newFile); // to leave the nav
     dragElement(newFile);
     var input = document.getElementById(`input-${fileNum}`);
     input.addEventListener('input', resizeInput);
     resizeInput.call(input);
     fileNum++
+    if (BFO['files'][id] === undefined) {
+        BFO['files'][id] = {}
+        BFO['files'][id]['top'] = top
+        BFO['files'][id]['left'] = left
+        BFO['files'][id]['parent'] = null
+    }
+    console.log(BFO)
 }
 
 function linkToDrive(link) {
