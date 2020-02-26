@@ -1,11 +1,10 @@
-function firstFolder() {
-    
-    let keys = Object.entries(BFO['folders'])
-    keys = sortParents(keys)
+function firstFolder(level = BFO['folders'], initial = true, parent) {
+    console.log(level)
+    let keys = Object.keys(level)
     if (keys.length) {
+        console.log('if')
         for (let i = 0; i < keys.length; i++) {
             let folderNum = keys[i]
-            let parent = BFO['folders'][folderNum]['parent']
             let folderClose = "close" + String(folderNum)
             let folderModal = "modal" + String(folderNum)
             let folderName = "folder" + String(folderNum)
@@ -24,28 +23,35 @@ function firstFolder() {
                                 </div>`
             folder.id = folderName
             folder.className = "droppable"
-            parent !== null ?
-                folder.style = `width: 100px;
-                                height: 100px;
-                                text-align: center;
-                                margin: 10px;`
-            :
+            if (initial) {
+                console.log('inital')
                 folder.style = `width: 100px;
                                 flex-direction: column;
                                 position: absolute;
                                 text-align: center;
-                                top: ${BFO['folders'][folderNum]['top']};
-                                left: ${BFO['folders'][folderNum]['left']};`
+                                top: ${level[folderNum]['top']};
+                                left: ${level[folderNum]['left']};`
+
+                document.body.appendChild(folder)
+                fillFolder(document.getElementById(folderNameInput).value, folderName, folderModal, folderClose, folderNum)
+            } else {
+                console.log('subsequent')
+                // folder.style = `width: 100px;
+                //                 flex-direction: column;
+                //                 position: absolute;
+                //                 text-align: center;
+                //                 margin: 10px;`
+                document.getElementById(`innerFolder-${parent}`).appendChild(folder)
+                fillFolder(document.getElementById(folderNameInput).value, folderName, folderModal, folderClose, folderNum)
+            }
             // folder.addEventListener()
-            parent === null ? 
-                document.body.appendChild(folder) 
-                : document.getElementById(`innerFolder-${parent}`).appendChild(folder)
+            // initial ? document.body.appendChild(folder) : document.getElementById(`innerFolder-${folderNum}`).appendChild(folder)
+            if (level[folderNum] && level[folderNum]['children']) firstFolder(level[folderNum]['children'], false, folderNum)
 
             dragElement(folder);
             var input = document.getElementById(folderNameInput);
             input.addEventListener('input', resizeInput);
             resizeInput.call(input);
-            fillFolder(document.getElementById(folderNameInput).value, folderName, folderModal, folderClose, folderNum)
             newFolderNum += 1;
 
             //delete folder
@@ -56,7 +62,7 @@ function firstFolder() {
             deleteFolderBtn.addEventListener('click', function (e) {
                 if (folderToDelete !== null) {
                     folderToDelete.remove();
-                    delete BFO['folders'][folderToDelete.id.slice(6)]
+                    delete level[folderToDelete.id.slice(6)]
                     folderToDelete = null
                 }
             });
@@ -100,7 +106,8 @@ function firstFolder() {
                 x.opacity = "1";
             }
         }
-    } else {
+    } else if (!keys.length && initial) {
+        console.log('else')
         newFolderNum += 1;
         let firstFolder = document.createElement("div");
         firstFolder.id = "folder"
@@ -125,7 +132,7 @@ function firstFolder() {
         deleteFolderBtn.addEventListener('click', function (e) {
             if (folderToDelete !== null) {
                 folderToDelete.remove();
-                delete BFO['folders'][folderToDelete.id.slice(6)]
+                delete level[folderToDelete.id.slice(6)]
                 folderToDelete = null
             }
         });
@@ -169,34 +176,7 @@ function firstFolder() {
             x.opacity = "1";
         }
     }
-    listFiles();
-}
-
-function sortParents(array) {
-    let sorted = new Array
-    let parentObject = new Object
-    parentObject[null] = true
-
-    while (array.length) {
-        let temp = new Array
-
-        for (let i = 0; i < array.length; i++) {
-
-            if (parentObject[array[i][1]['parent']]) {
-                sorted.push(array[i][0])
-                temp.push(array[i][0])
-                array.splice(i, 1)
-                i--
-            }
-
-        }
-
-        for (let i = 0; i < temp.length; i++) {
-            parentObject[temp[i]] = true
-        }
-    }
-
-    return sorted
+    if (initial) listFiles();
 }
 
 // firstFolder(); fillFolder(); dragElement(document.getElementById("folder"));

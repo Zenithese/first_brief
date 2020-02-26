@@ -3,7 +3,7 @@
 
 fileNum = 0;
 
-function newFile(name, link, id, top, left) {
+function newFile(name, link, id, top, left, parent) {
     if (top === undefined) top = String(event.clientY - 50) + 'px', left = '270px';
     var newFile = document.createElement("div");
     newFile.id = `file-${fileNum}`
@@ -22,7 +22,8 @@ function newFile(name, link, id, top, left) {
                      flex-direction: column;
                      text-align: center;`
     // newFile.ondblclick = linkToDrive(link);
-    document.body.appendChild(newFile); // to leave the nav
+    parent === null ? document.body.appendChild(newFile) : document.getElementById(`innerFolder-${parent}`).appendChild(newFile)
+    // document.body.appendChild(newFile); // to leave the nav
     dragElement(newFile);
     var input = document.getElementById(`input-${fileNum}`);
     input.addEventListener('input', resizeInput);

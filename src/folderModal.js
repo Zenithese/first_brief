@@ -2,6 +2,7 @@ var modalStack = [];
 var mod = document.getElementById("myModal")
 
 function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", close = "close", num = "0") {
+    // console.log(modal)
     var newFolderContent = document.createElement("div");
 
     // for stack
@@ -101,11 +102,16 @@ function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", 
 }
 
 function newNestedFolder(innerFolder) {
-    newFolderClose = "close" + String(newFolderNum)
-    newFolderModal = "modal" + String(newFolderNum)
-    newFolderName = "folder" + String(newFolderNum)
-    newFolderNameItself = newFolderName + "handle"
-    folderNameInput = "input" + String(newFolderNum)
+    BFO['folders'][newFolderNum] = {}
+    BFO['folders'][newFolderNum]['top'] = null
+    BFO['folders'][newFolderNum]['left'] = null
+    BFO['folders'][newFolderNum]['parent'] = Number(innerFolder.id.slice(12))
+    console.log(BFO)
+    let newFolderClose = "close" + String(newFolderNum)
+    let newFolderModal = "modal" + String(newFolderNum)
+    let newFolderName = "folder" + String(newFolderNum)
+    let newFolderNameItself = newFolderName + "handle"
+    let folderNameInput = "input" + String(newFolderNum)
     var newNestedFolder = document.createElement("div");
     innerFolder.appendChild(newNestedFolder);
     newNestedFolder.innerHTML = `<style>
@@ -137,9 +143,11 @@ function newNestedFolder(innerFolder) {
     let deleteFolderBtn = document.getElementById("deleteFolderBtn");
     let folderToDelete = null;
 
-    deleteFolderBtn.addEventListener('click', function () {
+    deleteFolderBtn.addEventListener('click', function (e) {
         if (folderToDelete !== null) {
             folderToDelete.remove();
+            delete BFO['folders'][folderToDelete.id.slice(6)]
+            folderToDelete = null
         }
     });
 

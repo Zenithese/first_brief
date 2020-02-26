@@ -5,6 +5,7 @@ var appended = false;
 var aboveOpenFolder = false;
 var xIntersection = 0;
 var yIntersection = 0;
+var key, key2
 
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -32,6 +33,7 @@ function dragElement(elmnt) {
     let currentDroppable = null;
 
     function elementDrag(e) {
+        console.log('dragging')
         e = e || window.event;
         e.preventDefault();
         // calculate the new cursor position:
@@ -45,7 +47,6 @@ function dragElement(elmnt) {
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
         restyle(elmnt, elmnt.style.top, elmnt.style.left)
         
-        let key, key2
         if (elmnt.id[1] === 'o') {
             key = 'folders';
             key2 = elmnt.id.slice(elmnt.id.length - 1) === "r" ? 0 : elmnt.id.slice(6);
@@ -133,15 +134,16 @@ function dragElement(elmnt) {
 
         if (readyToDrop && droppableBelow !== document.body && droppableBelow !== null) {
             // nest folder in folder below
-            // console.log('a')
+            console.log('a')
             dropIn(elmnt, droppableBelow.id.slice(droppableBelow.id.length - 1))
             leaveDroppable(droppableBelow)
         }
 
         if (readyToDrop && droppableBelow === document.body && elmntBelow.className !== "modal-body") { /**/
         // if (readyToDrop && droppableBelow === document.body) {
-            // console.log('b')
+            console.log('b')
             dropOut(elmnt)
+            console.log(BFO)
         }
 
         // for separate windows
@@ -155,9 +157,10 @@ function dragElement(elmnt) {
         // }
 
         appended = false;
-        if (elmntBelow && elmntBelow.className === "modal-body" && elmntBelow !== null) { /**/
-            elmntBelow.appendChild(elmnt);
-        }
+        // if (elmntBelow && elmntBelow.className === "modal-body" && elmntBelow !== null) { /**/
+        //     console.log('c')
+        //     elmntBelow.appendChild(elmnt);
+        // }
     }
 }
 
@@ -167,6 +170,9 @@ function dropIn(topFolder, bottomFolderNumber) {
     };
     innerFolder = 'innerFolder-' + bottomFolderNumber;
     document.getElementById(innerFolder).appendChild(topFolder);
+    BFO[key][key2]['parent'] = Number(bottomFolderNumber)
+    BFO[key][key2]['top'] = null
+    BFO[key][key2]['left'] = null
     topFolder.style.position = '';
     topFolder.style.margin = '10px';
     topFolder.style.height = '100px';
@@ -174,8 +180,12 @@ function dropIn(topFolder, bottomFolderNumber) {
 
 function dropOut(topFolder) {
     document.body.appendChild(topFolder)
+    BFO[key][key2]['parent'] = null
     topFolder.style.left = xIntersection;
     topFolder.style.top = yIntersection;
+    BFO[key][key2]['top'] = yIntersection
+    BFO[key][key2]['left'] = xIntersection
+    console.log(BFO)
     droppableBelow = null;
 }
 
@@ -250,6 +260,8 @@ function newFolder(xXx, yYy) {
     BFO['folders'][newFolderNum] = {}
     BFO['folders'][newFolderNum]['top'] = `${yYy}px`
     BFO['folders'][newFolderNum]['left'] = `${xXx}px`
+    BFO['folders'][newFolderNum]['parent'] = elmntBelow
+    console.log(BFO)
     newFolderClose = "close" + String(newFolderNum)
     newFolderModal = "modal" + String(newFolderNum)
     newFolderName = "folder" + String(newFolderNum)

@@ -58,7 +58,7 @@ function findAppDataFile () {
                     'alt': 'media'
                 }).then(function (response) {
                     BFO = JSON.parse(response.body)
-                    firstFolder(); fillFolder(); dragElement(document.getElementById("folder"));
+                    firstFolder();
                 })
             }
         } else {
@@ -77,9 +77,7 @@ function updatePositionsFile () {
         if (files && files.length > 0) {
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
-                console.log(file.name)
                 if (file.name === 'changed') {
-                    console.log('you made it')
                     var xhr = new XMLHttpRequest();
                     xhr.open('PATCH', 'https://www.googleapis.com/upload/drive/v3/files/' + file.id + '?uploadType=media');
                     xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);

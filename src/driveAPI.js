@@ -100,11 +100,11 @@ function listFiles() {
         if (files && files.length > 0) {
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
-                console.log(i, file)
+                // console.log(i, file)
                 fillNav(file)
                 // fillFirstFile(file.name, file.webViewLink, file.id);
                 if (file.id in BFO['files']) {
-                    newFile(file.name, file.webViewLink, file.id, BFO['files'][file.id]['top'], BFO['files'][file.id]['left'])
+                    newFile(file.name, file.webViewLink, file.id, BFO['files'][file.id]['top'], BFO['files'][file.id]['left'], BFO['files'][file.id]['parent'])
                 }
             }
         } else {
