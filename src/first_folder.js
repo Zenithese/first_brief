@@ -2,6 +2,7 @@ function firstFolder() {
     
     let keys = Object.entries(BFO['folders'])
     keys = sortParents(keys)
+    console.log(keys.length)
     if (keys.length) {
         for (let i = 0; i < keys.length; i++) {
             let folderNum = keys[i]
