@@ -12,6 +12,8 @@ function changeBackground(url) {
                            -o-background-size: cover;
                            background-size: cover;`
     wallpaper.style = `display: none`
+    BFO['wallpaper'] = url
+    console.log(BFO)
 }
 
 function wallpaperInput() {

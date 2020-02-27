@@ -4,7 +4,8 @@ var BFO = {
     },
     'files': {
         
-    }
+    },
+    'wallpaper': null
 };
 // var BFO = {
 //     'folders': {

@@ -64,6 +64,7 @@ function findAppDataFile () {
                 }).then(function (response) {
                     BFO = JSON.parse(response.body)
                     firstFolder();
+                    if (BFO['wallpaper'] !== null) changeBackground(BFO['wallpaper'])
                 })
             }
         } else {
