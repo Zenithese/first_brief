@@ -12,7 +12,7 @@ function newFile(name, link, id, top, left, parent) {
                             <img class="image" src="assets/images/blue_file_icon.png" style="max-width: 100%">
                          </div>
                          <div>
-                            <input id="input-${fileNum}" type="text" value=${name} onchange="renameDriveFile('${id}', document.getElementById('input-${fileNum}').value)"
+                            <input id="input-${fileNum}" type="text" value="${name}" onchange="renameDriveFile('${id}', document.getElementById('input-${fileNum}').value)"
                                 style="background-color: transparent; border: none; font-size: 12px; color: white; text-shadow: 1px 1px black;">
                          </div>`
     newFile.style = `width: 100px;
