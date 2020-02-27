@@ -176,15 +176,27 @@ function dropIn(topFolder, bottomFolderNumber) {
     topFolder.style.position = '';
     topFolder.style.margin = '10px';
     topFolder.style.height = '100px';
+
+    console.log(key)
+    key === 'folders' ? BFO[key][bottomFolderNumber]['children'].push(Number(topFolder.id.slice(6)))
+    : BFO[key][bottomFolderNumber]['children'].push(topFolder.dataset.id)
 }
 
 function dropOut(topFolder) {
     document.body.appendChild(topFolder)
-    BFO[key][key2]['parent'] = null
     topFolder.style.left = xIntersection;
     topFolder.style.top = yIntersection;
     BFO[key][key2]['top'] = yIntersection
     BFO[key][key2]['left'] = xIntersection
+
+    let children = [];
+    for (let index in BFO[key][BFO[key][key2]['parent']]['children']) {
+        let child = BFO[key][BFO[key][key2]['parent']]['children'][index]
+        if (child != key2) children.push(child);
+    }
+    BFO[key][BFO[key][key2]['parent']]['children'] = children;
+
+    BFO[key][key2]['parent'] = null
     console.log(BFO)
     droppableBelow = null;
 }
@@ -262,6 +274,7 @@ function newFolder(xXx, yYy) {
     BFO['folders'][newFolderNum]['top'] = `${yYy}px`
     BFO['folders'][newFolderNum]['left'] = `${xXx}px`
     BFO['folders'][newFolderNum]['parent'] = null
+    BFO['folders'][newFolderNum]['children'] = []
     console.log(BFO)
     newFolderClose = "close" + String(newFolderNum)
     newFolderModal = "modal" + String(newFolderNum)
@@ -305,7 +318,7 @@ function newFolder(xXx, yYy) {
     deleteFolderBtn.addEventListener('click', function (e) {
         if (folderToDelete !== null) {
             folderToDelete.remove();
-            delete BFO['folders'][folderToDelete.id.slice(6)]
+            recursiveDelete(folderToDelete.id.slice(6)) // delete BFO['folders'][folderToDelete.id.slice(6)]
             folderToDelete = null
         }
     });

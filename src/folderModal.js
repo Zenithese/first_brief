@@ -106,6 +106,7 @@ function newNestedFolder(innerFolder) {
     BFO['folders'][newFolderNum]['top'] = null
     BFO['folders'][newFolderNum]['left'] = null
     BFO['folders'][newFolderNum]['parent'] = Number(innerFolder.id.slice(12))
+    BFO['folders'][newFolderNum]['children'] = []
     console.log(BFO)
     let newFolderClose = "close" + String(newFolderNum)
     let newFolderModal = "modal" + String(newFolderNum)
@@ -146,7 +147,7 @@ function newNestedFolder(innerFolder) {
     deleteFolderBtn.addEventListener('click', function (e) {
         if (folderToDelete !== null) {
             folderToDelete.remove();
-            delete BFO['folders'][folderToDelete.id.slice(6)]
+            recursiveDelete(folderToDelete.id.slice(6)) // delete BFO['folders'][folderToDelete.id.slice(6)]
             folderToDelete = null
         }
     });

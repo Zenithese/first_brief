@@ -57,7 +57,7 @@ function firstFolder() {
             deleteFolderBtn.addEventListener('click', function (e) {
                 if (folderToDelete !== null) {
                     folderToDelete.remove();
-                    delete BFO['folders'][folderToDelete.id.slice(6)]
+                    recursiveDelete(folderToDelete.id.slice(6)) // delete BFO['folders'][folderToDelete.id.slice(6)]
                     folderToDelete = null
                 }
             });
