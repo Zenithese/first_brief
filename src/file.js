@@ -36,6 +36,58 @@ function newFile(name, link, id, top, left, parent) {
         BFO['files'][id]['parent'] = null
     }
     console.log(BFO)
+
+    //delete file
+    let x = document.getElementById("deleteFileDD").style;
+    let deleteFileBtn = document.getElementById("deleteFileBtn");
+    let fileToDelete = null;
+
+    deleteFileBtn.addEventListener('click', function (e) {
+        if (fileToDelete !== null) {
+            fileToDelete.remove();
+            recursiveDelete(fileToDelete.id.slice(6)) // delete BFO['files'][fileToDelete.id.slice(6)]
+            fileToDelete = null
+        }
+    });
+
+    if (newFile.addEventListener) {
+        newFile.addEventListener('contextmenu', function (e) {
+            fileToDelete = e.path[2];
+            let posX = e.clientX;
+            let posY = e.clientY;
+            deleteFileDD(posX, posY);
+            e.preventDefault();
+        }, false);
+        document.addEventListener('click', function (e) {
+            DDD = false;
+            x.opacity = "0";
+            setTimeout(function () {
+                x.visibility = "hidden";
+            }, 501);
+        }, false);
+    } else {
+        newFile.attachEvent('oncontextmenu', function (e) {
+            let posX = e.clientX;
+            let posY = e.clientY;
+            deleteFileDD(posX, posY);
+            e.preventDefault();
+        });
+        document.attachEvent('onclick', function (e) {
+            DDD = false;
+            x.opacity = "0";
+            setTimeout(function () {
+                x.visibility = "hidden";
+            }, 501);
+        });
+    }
+
+    function deleteFileDD(xx, yy) {
+        DDD = true;
+        x.top = yy + "px";
+        x.left = xx + "px";
+        x.visibility = "visible";
+        x.opacity = "1";
+    }
 }
 
 function linkToDrive(link) {
@@ -58,7 +110,7 @@ function fillFirstFile(name, link, fileId) {
                              text-align: center;
                              margin: 10px;`
     // newFile.ondblclick = linkToDrive(link);
-    document.getElementById("innerFolder-0").appendChild(newFile); // to fill the first (omni) folder
+    document.getElementById("innerFolder-0").appendChild(newFile); // to fill the first (omni) file
     dragElement(newFile);
     var input = document.getElementById(`input-${fileNum}`);
     input.addEventListener('input', resizeInput);
