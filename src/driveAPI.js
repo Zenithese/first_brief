@@ -99,7 +99,7 @@ function listFiles() {
     // findAppDataFile(gapi);
 
     gapi.client.drive.files.list({
-        'pageSize': 5,
+        // 'pageSize': 15,
         'fields': "nextPageToken, files(kind, id, name, webViewLink, iconLink, mimeType, description)"
     }).then(function (response) {
         files = response.result.files;
