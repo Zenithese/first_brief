@@ -67,6 +67,7 @@ function updateSigninStatus(isSignedIn) {
     } else {
         authorizeButton.style.display = 'block';
         signoutButton.style.display = 'none';
+        greeting();
     }
 }
 
