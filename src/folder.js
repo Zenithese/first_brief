@@ -206,7 +206,6 @@ function dropOut(topFolder) {
 // resizeInput.call(input); // immediately call the function
 
 function resizeInput() {
-    console.log(this.value.length)
     this.style.width = (this.value.length + 1) * 6 + 'px';
 }
 
@@ -220,11 +219,15 @@ let newFolderNum = 0;
 
 let i = document.getElementById("menu").style;
 let folderBtn = document.getElementById("newFolderBtn");
+let fileBtn = document.getElementById("newFileBtn");
 
 folderBtn.addEventListener('click', function() {
     newFolder(xXx, yYy);
 });
-// folderBtn.onclick = newFolder(top, left);
+
+fileBtn.addEventListener('click', function () {
+    createNewFile(`${yYy}px`, `${xXx}px`);
+});
 
 if (document.addEventListener) {
     document.addEventListener('contextmenu', function (e) {

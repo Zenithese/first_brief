@@ -8,10 +8,8 @@ function fileExists(fileName) {
             return f.name === fileName;
         }).length > 0;
         if (!exists) {
-            console.log('creating')
             createPositionsFile();
         } else {
-            console.log('finding')
             findAppDataFile();
         }
     });
@@ -49,7 +47,6 @@ function findAppDataFile () {
         let files = response.result.files;
         let length = files.length
         if (files && length > 0) {
-            console.log(files)
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
                 // if (i === length - 1 && file.name !== "myDriveAppDataFiled") {
@@ -57,7 +54,6 @@ function findAppDataFile () {
                 //     continue;
                 // }
                 if (file.name !== "myDriveAppDataFile") continue;
-                console.log('dataFile')
                 gAPI.client.drive.files.get({
                     'fileId': file.id,
                     'alt': 'media'
@@ -95,4 +91,30 @@ function updatePositionsFile () {
             alert('No files found.');
         }
     });
+}
+
+function createNewFile(x, y) {
+    var file = new Blob(['New File from myDesktop'], { type: 'text/plain' });
+    var metadata = {
+        'name': 'New File', // Filename at Google Drive
+        'mimeType': 'text/plain', // mimeType at Google Drive
+    };
+    var form = new FormData();
+    form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
+    form.append('file', file);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('post', 'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id');
+    xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
+    xhr.responseType = 'json';
+    xhr.onload = () => {
+        gAPI.client.drive.files.list({
+            'pageSize': 1,
+            'fields': "nextPageToken, files(kind, id, name, webViewLink, iconLink, mimeType, description)"
+        }).then(function (response) {
+            let file = response.result.files[0]
+            newFile(file.name, file.webViewLink, file.id, x, y, null);
+        })
+    };
+    xhr.send(form);
 }

@@ -15,6 +15,7 @@ function newFile(name, link, id, top, left, parent) {
                             <input id="input-${fileNum}" type="text" value="${name}" onchange="renameDriveFile('${id}', document.getElementById('input-${fileNum}').value)"
                                 style="background-color: transparent; border: none; font-size: 12px; color: white; text-shadow: 1px 1px black;">
                          </div>`
+    
     newFile.style = `width: 100px;
                      position: absolute;
                      top: ${top};
@@ -31,8 +32,8 @@ function newFile(name, link, id, top, left, parent) {
     fileNum++
     if (BFO['files'][id] === undefined) {
         BFO['files'][id] = {}
-        BFO['files'][id]['top'] = top
-        BFO['files'][id]['left'] = left
+        BFO['files'][id]['top'] = `${top}`
+        BFO['files'][id]['left'] = `${left}`
         BFO['files'][id]['parent'] = null
     }
     console.log(BFO)
@@ -45,7 +46,7 @@ function newFile(name, link, id, top, left, parent) {
     deleteFileBtn.addEventListener('click', function (e) {
         if (fileToDelete !== null) {
             fileToDelete.remove();
-            recursiveDelete(fileToDelete.id.slice(6)) // delete BFO['files'][fileToDelete.id.slice(6)]
+            recursiveDelete(fileToDelete.dataset.id)
             fileToDelete = null
         }
     });

@@ -1,4 +1,5 @@
 function recursiveDelete(id){
+    console.log('made it')
     if (BFO['folders'][id] && BFO['folders'][id]['children'].length) {
         BFO['folders'][id]['children'].forEach(id => {
             if (BFO['folders'][id] && BFO['folders'][id]['children'].length) {
@@ -6,11 +7,13 @@ function recursiveDelete(id){
             }
             
             if (BFO['folders'][id]) delete BFO['folders'][id]
+            console.log(id)
             if (BFO['files'][id]) delete BFO['files'][id]
         })
     }
     
     if (BFO['folders'][id]) delete BFO['folders'][id]
+    console.log(id)
     if (BFO['files'][id]) delete BFO['files'][id]
 }
 

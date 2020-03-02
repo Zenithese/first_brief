@@ -63,7 +63,6 @@ function updateSigninStatus(isSignedIn) {
         let key = Object.keys(gAPI.auth2.getAuthInstance().currentUser)[0]
         let key2 = Object.keys(gAPI.auth2.getAuthInstance().currentUser[key])[1]
         accessToken = gAPI.auth2.getAuthInstance().currentUser[key][key2].access_token
-        console.log('gonna see if file already exist')
         fileExists("myDriveAppDataFile")
     } else {
         authorizeButton.style.display = 'block';
