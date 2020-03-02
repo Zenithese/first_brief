@@ -222,11 +222,19 @@ let folderBtn = document.getElementById("newFolderBtn");
 let fileBtn = document.getElementById("newFileBtn");
 
 folderBtn.addEventListener('click', function() {
-    newFolder(xXx, yYy);
+    if (accessToken) {
+        newFolder(xXx, yYy)
+    } else {
+        alert('Authorize first')
+    }
 });
 
 fileBtn.addEventListener('click', function () {
-    createNewFile(`${yYy}px`, `${xXx}px`);
+    if (accessToken) {
+        createNewFile(`${yYy}px`, `${xXx}px`);
+    } else {
+        alert('Authorize first')
+    }
 });
 
 if (document.addEventListener) {
