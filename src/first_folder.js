@@ -5,6 +5,7 @@ function firstFolder() {
     if (keys.length) {
         for (let i = 0; i < keys.length; i++) {
             let folderNum = keys[i]
+            let title = BFO["folders"][folderNum]["title"]
             let parent = BFO['folders'][folderNum]['parent']
             let folderClose = "close" + String(folderNum)
             let folderModal = "modal" + String(folderNum)
@@ -19,9 +20,11 @@ function firstFolder() {
                                     <img class="image" src="http://icon-park.com/imagefiles/folder_icon_yellow.png" style="max-width: 100%">
                                 </div>
                                 <div id="folder-name">
-                                    <input id=${folderNameInput} type="text" name=${folderModal} value="New Folder${folderNum > 0 ? ` ${folderNum}` : ''}" onchange="renameFolder(document.getElementById('${folderNameInput}'))" title=${folderNum}
+                                    <input id=${folderNameInput} type="text" name=${folderModal} value="${title}" onchange="renameFolder(document.getElementById('${folderNameInput}'))" title=${folderNum}
                                         style="background-color: transparent; border: none; font-size: 12px; color: white; text-shadow: 1px 1px black;">
                                 </div>`
+
+            // value = "New Folder${folderNum > 0 ? ` ${folderNum}` : ''}"
             folder.id = folderName
             folder.className = "droppable"
             parent !== null ?
