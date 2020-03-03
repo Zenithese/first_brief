@@ -177,9 +177,9 @@ function dropIn(topFolder, bottomFolderNumber) {
     topFolder.style.margin = '10px';
     topFolder.style.height = '100px';
 
-    console.log(key)
-    key === 'folders' ? BFO[key][bottomFolderNumber]['children'].push(Number(topFolder.id.slice(6)))
-    : BFO[key][bottomFolderNumber]['children'].push(topFolder.dataset.id)
+    let child;
+    key === 'folders' ? child = topFolder.id.slice(6) : child = topFolder.dataset.id
+    BFO["folders"][bottomFolderNumber]['children'].push(child)
 }
 
 function dropOut(topFolder) {
@@ -189,12 +189,14 @@ function dropOut(topFolder) {
     BFO[key][key2]['top'] = yIntersection
     BFO[key][key2]['left'] = xIntersection
 
-    let children = [];
-    for (let index in BFO[key][BFO[key][key2]['parent']]['children']) {
-        let child = BFO[key][BFO[key][key2]['parent']]['children'][index]
-        if (child != key2) children.push(child);
+    if (BFO[key][key2]['parent']) {
+        let children = [];
+        for (let index in BFO[key][BFO[key][key2]['parent']]['children']) {
+            let child = BFO[key][BFO[key][key2]['parent']]['children'][index]
+            if (child != key2) children.push(child);
+        }
+        BFO[key][BFO[key][key2]['parent']]['children'] = children;
     }
-    BFO[key][BFO[key][key2]['parent']]['children'] = children;
 
     BFO[key][key2]['parent'] = null
     console.log(BFO)

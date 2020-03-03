@@ -100,10 +100,11 @@ function firstFolder() {
                 x.opacity = "1";
             }
         }
-    } else {
+    } 
+    // else {
         // pop-up modal to explain how to use the application
-        greeting();
-    }
+    //     greeting();
+    // }
     listFiles();
 }
 
