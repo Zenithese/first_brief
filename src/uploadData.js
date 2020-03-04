@@ -58,7 +58,7 @@ function findAppDataFile () {
                     'fileId': file.id,
                     'alt': 'media'
                 }).then(function (response) {
-                    BFO = JSON.parse(response.body)
+                    // BFO = JSON.parse(response.body)
                     firstFolder();
                     if (BFO['wallpaper'] !== null) changeBackground(BFO['wallpaper'])
                 })
