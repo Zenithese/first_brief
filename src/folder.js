@@ -212,7 +212,9 @@ function resizeInput() {
 }
 
 function renameFolder(name) {
+    // console.log(name)
     document.getElementById(name.title).innerHTML = name.value
+    BFO["folders"][name.title]["title"] = name.value
 }
 
 let xXx = 0;
