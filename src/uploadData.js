@@ -18,7 +18,7 @@ function fileExists(fileName) {
 function createPositionsFile() {
     var file = new Blob([JSON.stringify(BFO)], { type: 'text/javascript' });
     var metadata = {
-        'name': 'myDriveAppDataFile', // Filename at Google Drive
+        'name': 'app_data', // Filename at Google Drive
         'mimeType': 'text/javascript', // mimeType at Google Drive
         'parents': ['appDataFolder']
     };
@@ -49,11 +49,11 @@ function findAppDataFile () {
         if (files && length > 0) {
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
-                // if (i === length - 1 && file.name !== "myDriveAppDataFiled") {
+                // if (i === length - 1 && file.name !== "app_datad") {
                 //     firstFolder(); fillFolder(); dragElement(document.getElementById("folder"));
                 //     continue;
                 // }
-                if (file.name !== "myDriveAppDataFile") continue;
+                if (file.name !== "app_data") continue;
                 gAPI.client.drive.files.get({
                     'fileId': file.id,
                     'alt': 'media'
@@ -79,7 +79,7 @@ function updatePositionsFile () {
         if (files && files.length > 0) {
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
-                if (file.name === 'myDriveAppDataFile') {
+                if (file.name === 'app_data') {
                     var xhr = new XMLHttpRequest();
                     xhr.open('PATCH', 'https://www.googleapis.com/upload/drive/v3/files/' + file.id + '?uploadType=media');
                     xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
