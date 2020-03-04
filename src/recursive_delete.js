@@ -6,16 +6,43 @@ function recursiveDelete(id){
                 recursiveDelete(id)
             }
             
-            if (BFO['folders'][id]) delete BFO['folders'][id]
-            console.log(id)
+            if (BFO['folders'][id]) {
+                if (BFO['folders'][id]['title'].slice(0, 11) === "New Folder ") {
+                    let num = BFO['folders'][id]['title'].slice(11)
+                    if (num < titleNum) titleNum = Number(num)
+                    if (num === titleNum) titleNum -= 1;
+                    skip[num] = false
+                }
+                delete BFO['folders'][id]
+            }
             if (BFO['files'][id]) delete BFO['files'][id]
         })
     }
     
-    if (BFO['folders'][id]) delete BFO['folders'][id]
-    console.log(id)
+    if (BFO['folders'][id]) {
+        if (BFO['folders'][id]['title'].slice(0, 11) === "New Folder ") {
+            let num = BFO['folders'][id]['title'].slice(11)
+            if (num < titleNum) titleNum = Number(num)
+            if (num === titleNum) titleNum -= 1;
+            skip[num] = false
+        }
+        delete BFO['folders'][id]
+    }
     if (BFO['files'][id]) delete BFO['files'][id]
 }
+
+// console.log(titleNum, id)
+// if (skip[id]) skip[id] = false;
+// if (titleNum == id) titleNum -= 1;
+// if (titleNum > id) titleNum = Number(id);
+// // if (skip[titleNum]) skip[titleNum] = false;
+// for (let num in skip) {
+//     if (skip[num]) {
+//         titleNum = num
+//         break
+//     }
+// }
+// console.log(titleNum)
 
 // folderToDelete.remove();
 // delete BFO['folders'][folderToDelete.id.slice(6)]

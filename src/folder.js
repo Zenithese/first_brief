@@ -286,6 +286,8 @@ var DDD = false;
 
 function newFolder(xXx, yYy) {
     while (skip[titleNum]) titleNum++;
+    skip[titleNum] = true;
+    console.log(skip)
     BFO['folders'][newFolderNum] = {}
     BFO['folders'][newFolderNum]['top'] = `${yYy}px`
     BFO['folders'][newFolderNum]['left'] = `${xXx}px`
@@ -327,6 +329,7 @@ function newFolder(xXx, yYy) {
     fillFolder(document.getElementById(folderNameInput).value, newFolderName, newFolderModal, newFolderClose, newFolderNum)
     newFolderNum += 1;
     titleNum++
+    console.log(titleNum)
 
     //delete folder
     let x = document.getElementById("deleteDD").style;
