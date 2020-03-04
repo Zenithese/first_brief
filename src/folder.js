@@ -5,7 +5,7 @@ var appended = false;
 var aboveOpenFolder = false;
 var xIntersection = 0;
 var yIntersection = 0;
-var key, key2
+var key, key2, titleNum = 0
 
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -283,9 +283,11 @@ function menu(x, y) {
 var DDD = false;
 
 function newFolder(xXx, yYy) {
+    while (skip[titleNum]) titleNum++;
     BFO['folders'][newFolderNum] = {}
     BFO['folders'][newFolderNum]['top'] = `${yYy}px`
     BFO['folders'][newFolderNum]['left'] = `${xXx}px`
+    BFO['folders'][newFolderNum]['title'] = `New Folder ${titleNum}`
     BFO['folders'][newFolderNum]['parent'] = null
     BFO['folders'][newFolderNum]['children'] = []
     console.log(BFO)
@@ -302,7 +304,7 @@ function newFolder(xXx, yYy) {
                                 <img class="image" src="http://icon-park.com/imagefiles/folder_icon_yellow.png" style="max-width: 100%">
                             </div>
                             <div id="folder-name">
-                                <input id=${folderNameInput} type="text" name=${newFolderModal} value="New Folder ${newFolderNum}" onchange="renameFolder(document.getElementById('${folderNameInput}'))" title=${newFolderNum}
+                                <input id=${folderNameInput} type="text" name=${newFolderModal} value="New Folder ${titleNum}" onchange="renameFolder(document.getElementById('${folderNameInput}'))" title=${newFolderNum}
                                     style="background-color: transparent; border: none; font-size: 12px; color: white; text-shadow: 1px 1px black;">
                             </div>`
     newFolder.id = newFolderName
@@ -322,6 +324,7 @@ function newFolder(xXx, yYy) {
     resizeInput.call(input);
     fillFolder(document.getElementById(folderNameInput).value, newFolderName, newFolderModal, newFolderClose, newFolderNum)
     newFolderNum += 1;
+    titleNum++
 
     //delete folder
     let x = document.getElementById("deleteDD").style;

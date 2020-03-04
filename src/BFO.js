@@ -10,30 +10,30 @@
 var BFO = {
     'folders': {
         0: {
-            'title': 'Aquarius',
             'top': '300px',
             'left': '570px',
+            'title': 'Aquarius',
             'parent': null,
             'children': [1]
         },
         1: {
-            'title': 'origin',
             'top': '50px',
             'left': '50px',
+            'title': 'origin',
             'parent': 0,
             'children': [2]
         },
         2: {
-            'title': 'sipping on gin n juice',
             'top': '50px',
             'left': '150px',
+            'title': 'sipping on gin n juice',
             'parent': 1,
             'children': []
         },
         3:{
-            'title': 'snoopy',
             'top': '200px',
             'left': '370px',
+            'title': 'snoopy',
             'parent': null,
             'children': []
         }

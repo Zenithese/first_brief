@@ -1,3 +1,5 @@
+var skip = new Object
+
 function firstFolder() {
     
     let keys = Object.entries(BFO['folders'])
@@ -6,6 +8,7 @@ function firstFolder() {
         for (let i = 0; i < keys.length; i++) {
             let folderNum = keys[i]
             let title = BFO["folders"][folderNum]["title"]
+            if (title.slice(0, 11) === "New Folder ") skip[title.slice(11)] = true
             let parent = BFO['folders'][folderNum]['parent']
             let folderClose = "close" + String(folderNum)
             let folderModal = "modal" + String(folderNum)
