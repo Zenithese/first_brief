@@ -31,19 +31,6 @@ function recursiveDelete(id){
     if (BFO['files'][id]) delete BFO['files'][id]
 }
 
-// console.log(titleNum, id)
-// if (skip[id]) skip[id] = false;
-// if (titleNum == id) titleNum -= 1;
-// if (titleNum > id) titleNum = Number(id);
-// // if (skip[titleNum]) skip[titleNum] = false;
-// for (let num in skip) {
-//     if (skip[num]) {
-//         titleNum = num
-//         break
-//     }
-// }
-// console.log(titleNum)
-
 // folderToDelete.remove();
 // delete BFO['folders'][folderToDelete.id.slice(6)]
 // folderToDelete = null
