@@ -36,6 +36,7 @@ function createPositionsFile() {
     };
     xhr.send(form);
     greeting();
+    listFiles();
 }
 
 function findAppDataFile () {
