@@ -165,6 +165,16 @@ function dragElement(elmnt) {
 }
 
 function dropIn(topFolder, bottomFolderNumber) {
+    if (BFO[key][key2]['parent'] !== null && BFO[key][key2]['parent'] !== undefined) {
+        console.log('in conditional')
+        let children = [];
+        for (let index in BFO['folders'][BFO[key][key2]['parent']]['children']) {
+            let child = BFO['folders'][BFO[key][key2]['parent']]['children'][index]
+            if (child != key2) children.push(child);
+        }
+        BFO['folders'][BFO[key][key2]['parent']]['children'] = children;
+    }
+
     if (bottomFolderNumber === "r") {
         bottomFolderNumber = 0;
     };
@@ -189,13 +199,15 @@ function dropOut(topFolder) {
     BFO[key][key2]['top'] = yIntersection
     BFO[key][key2]['left'] = xIntersection
 
-    if (BFO[key][key2]['parent']) {
+    console.log(key, BFO[key][key2]['parent'])
+    if (BFO[key][key2]['parent'] !== null && BFO[key][key2]['parent'] !== undefined) {
+        console.log('in conditional')
         let children = [];
-        for (let index in BFO[key][BFO[key][key2]['parent']]['children']) {
-            let child = BFO[key][BFO[key][key2]['parent']]['children'][index]
+        for (let index in BFO['folders'][BFO[key][key2]['parent']]['children']) {
+            let child = BFO['folders'][BFO[key][key2]['parent']]['children'][index]
             if (child != key2) children.push(child);
         }
-        BFO[key][BFO[key][key2]['parent']]['children'] = children;
+        BFO['folders'][BFO[key][key2]['parent']]['children'] = children;
     }
 
     BFO[key][key2]['parent'] = null
@@ -208,7 +220,7 @@ function dropOut(topFolder) {
 // resizeInput.call(input); // immediately call the function
 
 function resizeInput() {
-    this.style.width = (this.value.length + 1) * 6 + 'px';
+    this.style.width = (this.value.length + 1) * 6.5 + 'px';
 }
 
 function renameFolder(name) {
@@ -295,11 +307,11 @@ function newFolder(xXx, yYy) {
     BFO['folders'][newFolderNum]['parent'] = null
     BFO['folders'][newFolderNum]['children'] = []
     console.log(BFO)
-    newFolderClose = "close" + String(newFolderNum)
-    newFolderModal = "modal" + String(newFolderNum)
-    newFolderName = "folder" + String(newFolderNum)
-    newFolderNameItself = newFolderName + "handle"
-    folderNameInput = "input" + String(newFolderNum)
+    let newFolderClose = "close" + String(newFolderNum)
+    let newFolderModal = "modal" + String(newFolderNum)
+    let newFolderName = "folder" + String(newFolderNum)
+    let newFolderNameItself = newFolderName + "handle"
+    let folderNameInput = "input" + String(newFolderNum)
     var newFolder = document.createElement("div");
     newFolder.innerHTML =  `<style>
                                 #${newFolderName}:hover {z-index: 1}

@@ -102,11 +102,15 @@ function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", 
 }
 
 function newNestedFolder(innerFolder) {
+    while (skip[titleNum]) titleNum++;
+    skip[titleNum] = true;
     BFO['folders'][newFolderNum] = {}
     BFO['folders'][newFolderNum]['top'] = null
     BFO['folders'][newFolderNum]['left'] = null
+    BFO['folders'][newFolderNum]['title'] = `New Folder ${titleNum}`
     BFO['folders'][newFolderNum]['parent'] = Number(innerFolder.id.slice(12))
     BFO['folders'][newFolderNum]['children'] = []
+    BFO['folders'][BFO['folders'][newFolderNum]['parent']]['children'].push(String(newFolderNum))
     console.log(BFO)
     let newFolderClose = "close" + String(newFolderNum)
     let newFolderModal = "modal" + String(newFolderNum)
@@ -122,7 +126,7 @@ function newNestedFolder(innerFolder) {
                                     <img class="image" src="http://icon-park.com/imagefiles/folder_icon_yellow.png" style="max-width: 100%">
                                  </div>
                                  <div id="folder-name">
-                                    <input id=${folderNameInput} type="text" name=${newFolderModal} value="New Folder ${newFolderNum}" onchange="renameFolder(document.getElementById('${folderNameInput}'))" title=${newFolderNum}
+                                    <input id=${folderNameInput} type="text" name=${newFolderModal} value="New Folder ${titleNum}" onchange="renameFolder(document.getElementById('${folderNameInput}'))" title=${newFolderNum}
                                         style="background-color: transparent; border: none; font-size: 12px; color: white; text-shadow: 1px 1px black;">
                                  </div>`
     newNestedFolder.id = newFolderName
@@ -138,6 +142,7 @@ function newNestedFolder(innerFolder) {
     resizeInput.call(input);
     fillFolder(document.getElementById(folderNameInput).value, newFolderName, newFolderModal, newFolderClose, newFolderNum)
     newFolderNum += 1;
+    titleNum++
 
     // delete folder
     let x = document.getElementById("deleteDD").style;
