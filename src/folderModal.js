@@ -97,7 +97,7 @@ function fillFolder(value = "New Folder", folder = "folder", modal = "myModal", 
         }
     }
 
-    dragElement(document.getElementById(`modal-content${num}`))
+    // dragElement(document.getElementById(`modal-content${num}`))
 
 }
 

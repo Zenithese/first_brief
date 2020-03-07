@@ -189,7 +189,7 @@ function dropIn(topFolder, bottomFolderNumber) {
 
     let child;
     key === 'folders' ? child = topFolder.id.slice(6) : child = topFolder.dataset.id
-    BFO["folders"][bottomFolderNumber]['children'].push(child)
+    if (child) BFO["folders"][bottomFolderNumber]['children'].push(child)
 }
 
 function dropOut(topFolder) {
