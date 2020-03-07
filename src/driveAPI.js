@@ -63,7 +63,7 @@ function updateSigninStatus(isSignedIn) {
         let key = Object.keys(gAPI.auth2.getAuthInstance().currentUser)[0]
         let key2 = Object.keys(gAPI.auth2.getAuthInstance().currentUser[key])[1]
         accessToken = gAPI.auth2.getAuthInstance().currentUser[key][key2].access_token
-        fileExists("app_data")
+        fileExists("app_data_0")
     } else {
         authorizeButton.style.display = 'block';
         signoutButton.style.display = 'none';
@@ -80,7 +80,7 @@ function handleAuthClick(event) {
     let key = Object.keys(gAPI.auth2.getAuthInstance().currentUser)[0]
     let key2 = Object.keys(gAPI.auth2.getAuthInstance().currentUser[key])[1]
     accessToken = gAPI.auth2.getAuthInstance().currentUser[key][key2].access_token
-    fileExists("app_data")
+    fileExists("app_data_0")
 }
 
 /**
