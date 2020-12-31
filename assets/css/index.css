@@ -8,6 +8,8 @@ body {
   background-size: cover;
   transition: margin-left .5s;
   overflow: hidden;
+  margin: 0;
+  height: 100vh;
 }
 
 #wallpaper-parent {
